@@ -1,5 +1,6 @@
 <!doctype html><html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
 <title>Apparts Paris pour Léa — T2 ≤ 1200€ CC</title>
 <style>
 :root{--bg:#f6f5f2;--card:#ffffff;--ink:#1d1b18;--muted:#73706a;--gold:#9c7a26;--green:#1f7a44;--red:#b23b2e;--line:#e6e2da}
@@ -24,11 +25,19 @@ h1{font:600 30px/1.2 Georgia,serif;margin:0 0 8px}
 .b.meuble{color:var(--gold);border-color:#e3d3a5;background:#faf5e8}
 .b.asc{color:var(--green);border-color:#bfe0cb;background:#eef7f1}
 .b.part{color:#1f5d80;border-color:#bcd9e8;background:#eef5fa}
+.b.warn{color:#fff;background:#b23b2e;border-color:#b23b2e;font-weight:700}
 .b.dpe-a,.b.dpe-b,.b.dpe-c{color:#1f7a44}.b.dpe-d{color:#8a7416}.b.dpe-e{color:#b5731f}.b.dpe-f,.b.dpe-g{color:var(--red)}
 .temple{font-size:13px;color:#7a5f17;margin-bottom:10px}
 .gal{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:thin}
 .gal img{height:118px;border-radius:8px;cursor:pointer;object-fit:cover;flex:0 0 auto;border:1px solid var(--line)}
 .gal.empty{color:var(--muted);font-size:13px;font-style:italic}
+.galn{font-size:11.5px;color:var(--muted);margin:-4px 0 12px}
+.lbnav{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.16);color:#fff;border:none;font:300 44px/1 system-ui;width:66px;height:96px;cursor:pointer;border-radius:12px;z-index:100;display:flex;align-items:center;justify-content:center}
+.lbnav:hover{background:rgba(255,255,255,.32)}
+.lbnav.prev{left:16px}.lbnav.next{right:16px}
+.lbcount{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);color:#fff;background:rgba(0,0,0,.55);padding:6px 16px;border-radius:20px;font-size:14px;z-index:100}
+.lbclose{position:fixed;top:16px;right:18px;background:rgba(255,255,255,.16);color:#fff;border:none;font-size:20px;width:46px;height:46px;border-radius:50%;cursor:pointer;z-index:100}
+@media(max-width:640px){.lbnav{width:46px;height:74px;font-size:30px}}
 .pm{display:grid;grid-template-columns:1fr;gap:4px;margin-bottom:12px}
 .pm ul{margin:0;padding:0;list-style:none}
 .pm .plus li{font-size:13px;color:#1f7a44;padding:1px 0}
@@ -49,8 +58,8 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
 <h1>Apparts Paris pour Léa</h1>
 <div class="sub">T2 (2 pièces) à 1200€ charges comprises max, Rive Gauche / 13e-14e-15e. Meublé ou non, ascenseur si étage élevé. Triés du meilleur plan au moins bon. Photos et infos récupérées sur Jinka, PAP et 123Loger.</div>
 <div class="legend">
-<span><b>36</b> annonces</span>
-<span>Meilleur plan : <b>695€ · 42m² · meublé</b></span>
+<span><b>74</b> annonces</span>
+<span>Meilleur plan : <b>1000€ · 45m² · meublé</b></span>
 <span>🥊 = distance au Temple Noble Art le plus proche</span>
 <span>✅ avantages · ❌ points d'attention</span>
 </div>
@@ -59,39 +68,73 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
 <article class="card">
   <div class="rank">#1</div>
   <div class="head">
-    <div class="price">695€ <span class="cc">CC · 17 €/m²</span></div>
+    <div class="price">1000€ <span class="cc">CC · 22 €/m²</span></div>
     <div class="note" title="note /5">★★★★★ <b>5.0</b></div>
   </div>
-  <div class="meta">42 m² · <b>14e</b> · meublé</div>
-  <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
-  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_67f38d3318_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67f38d3318_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67f38d3318_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67f38d3318_3.webp" onclick="lb(this.src)"></div>
+  <div class="meta">45 m² · <b>13e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">RDC</span><span class="b dpe dpe-a">DPE A</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
   <div class="pm">
-    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (42 m²)</li><li>Excellent prix/m² (17 €/m²)</li></ul>
-    <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (45 m²)</li><li>DPE A (correct)</li></ul>
+    <ul class="moins"></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/67f38d3318f2/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
-  <div class="srcline">Source : 123loger.com</div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3188994311" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
 </article>
 <article class="card">
   <div class="rank">#2</div>
   <div class="head">
-    <div class="price">1166€ <span class="cc">CC · 30 €/m²</span></div>
+    <div class="price">1078€ <span class="cc">CC · 28 €/m²</span></div>
     <div class="note" title="note /5">★★★★★ <b>5.0</b></div>
   </div>
-  <div class="meta">39 m² · <b>14e</b> · meublé</div>
-  <div class="badges"><span class="b meuble">Meublé</span><span class="b">2ème étagee ét.</span><span class="b part">Particulier</span></div>
-  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_68ee47470f_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_68ee47470f_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_68ee47470f_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_68ee47470f_3.webp" onclick="lb(this.src)"></div>
+  <div class="meta">38 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">4e ét.</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
   <div class="pm">
-    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (39 m²)</li><li>Excellent prix/m² (30 €/m²)</li></ul>
-    <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
+    <ul class="plus"><li>Meublé</li><li>Ascenseur</li><li>Grande surface (38 m²)</li><li>Bon prix/m² (28 €/m²)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/68ee47470f3e/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
-  <div class="srcline">Source : 123loger.com</div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/georges-brassens/272758749.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
 </article>
 <article class="card">
   <div class="rank">#3</div>
+  <div class="head">
+    <div class="price">1100€ <span class="cc">CC · 28 €/m²</span></div>
+    <div class="note" title="note /5">★★★★★ <b>5.0</b></div>
+  </div>
+  <div class="meta">40 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">3e ét.</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3212319726_0.jpg" onclick="openLb('lbc_3212319726',0)"><img loading="lazy" src="img/lbc_3212319726_1.jpg" onclick="openLb('lbc_3212319726',1)"><img loading="lazy" src="img/lbc_3212319726_2.jpg" onclick="openLb('lbc_3212319726',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (40 m²)</li><li>Bon prix/m² (28 €/m²)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3212319726" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#4</div>
+  <div class="head">
+    <div class="price">1200€ <span class="cc">CC · 30 €/m²</span></div>
+    <div class="note" title="note /5">★★★★★ <b>5.0</b></div>
+  </div>
+  <div class="meta">40 m² · <b>14e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b asc">Ascenseur</span><span class="b">4e ét.</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/jk_2236b77c_0.webp" onclick="openLb('jk_2236b77c',0)"><img loading="lazy" src="img/jk_2236b77c_1.webp" onclick="openLb('jk_2236b77c',1)"><img loading="lazy" src="img/jk_2236b77c_2.webp" onclick="openLb('jk_2236b77c',2)"><img loading="lazy" src="img/jk_2236b77c_3.webp" onclick="openLb('jk_2236b77c',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>Grande surface (40 m²)</li><li>Bon prix/m² (30 €/m²)</li><li>DPE D (correct)</li></ul>
+    <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
+  </div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201200%2040%20m2%20Paris%2014e%20123loger.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (123loger.com)</a></div>
+  <div class="srcline">Source : 123loger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#5</div>
   <div class="head">
     <div class="price">1100€ <span class="cc">CC · 33 €/m²</span></div>
     <div class="note" title="note /5">★★★★⯨ <b>4.5</b></div>
@@ -99,16 +142,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">33 m² · <b>15e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/pap_2181cbcc_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_2181cbcc_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_2181cbcc_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_2181cbcc_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_2181cbcc_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_2181cbcc_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_2181cbcc_6.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/pap_2181cbcc_0.jpg" onclick="openLb('pap_2181cbcc',0)"><img loading="lazy" src="img/pap_2181cbcc_1.jpg" onclick="openLb('pap_2181cbcc',1)"><img loading="lazy" src="img/pap_2181cbcc_2.jpg" onclick="openLb('pap_2181cbcc',2)"><img loading="lazy" src="img/pap_2181cbcc_3.jpg" onclick="openLb('pap_2181cbcc',3)"><img loading="lazy" src="img/pap_2181cbcc_4.jpg" onclick="openLb('pap_2181cbcc',4)"><img loading="lazy" src="img/pap_2181cbcc_5.jpg" onclick="openLb('pap_2181cbcc',5)"><img loading="lazy" src="img/pap_2181cbcc_6.jpg" onclick="openLb('pap_2181cbcc',6)"></div><div class="galn">7 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Téléphone direct dispo</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"></ul>
   </div>
-  <div class="contact"><a class="btn tel" href="tel:0983095380">📞 09 83 09 53 80</a><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-15e-75015-r463903741" target="_blank" rel="noopener">🔗 Voir sur PAP</a></div>
+  <div class="contact"><a class="btn tel" href="tel:0983095380">📞 09 83 09 53 80</a><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-15e-75015-r463903741" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur PAP</a></div>
   <div class="srcline">Source : pap.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#4</div>
+  <div class="rank">#6</div>
   <div class="head">
     <div class="price">1160€ <span class="cc">CC · 39 €/m²</span></div>
     <div class="note" title="note /5">★★★★⯨ <b>4.5</b></div>
@@ -116,16 +159,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">4e ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal empty">Pas de photo récupérée</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>Téléphone direct dispo</li></ul>
     <ul class="moins"></ul>
   </div>
-  <div class="contact"><a class="btn tel" href="tel:0625746964">📞 06 25 74 69 64</a><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-13e-r463803690" target="_blank" rel="noopener">🔗 Voir sur PAP</a></div>
+  <div class="contact"><a class="btn tel" href="tel:0625746964">📞 06 25 74 69 64</a><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-13e-r463803690" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur PAP</a></div>
   <div class="srcline">Source : pap.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#5</div>
+  <div class="rank">#7</div>
+  <div class="head">
+    <div class="price">1166€ <span class="cc">CC · 30 €/m²</span></div>
+    <div class="note" title="note /5">★★★★⯨ <b>4.5</b></div>
+  </div>
+  <div class="meta">39 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">2ème étagee ét.</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/cl_68ee47470f_0.webp" onclick="openLb('cl_68ee47470f',0)"><img loading="lazy" src="img/cl_68ee47470f_1.webp" onclick="openLb('cl_68ee47470f',1)"><img loading="lazy" src="img/cl_68ee47470f_2.webp" onclick="openLb('cl_68ee47470f',2)"><img loading="lazy" src="img/cl_68ee47470f_3.webp" onclick="openLb('cl_68ee47470f',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (39 m²)</li><li>Bon prix/m² (30 €/m²)</li></ul>
+    <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/68ee47470f3e/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
+  <div class="srcline">Source : 123loger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#8</div>
   <div class="head">
     <div class="price">1184€ <span class="cc">CC · 30 €/m²</span></div>
     <div class="note" title="note /5">★★★★⯨ <b>4.5</b></div>
@@ -133,16 +193,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">40 m² · <b>14e</b> · non meublé</div>
   <div class="badges"><span class="b meuble">Non meublé</span><span class="b dpe dpe-e">DPE E</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_9201ebd0_0.jpeg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_9201ebd0_1.jpeg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_9201ebd0_2.jpeg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_9201ebd0_3.jpeg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_9201ebd0_4.jpeg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_9201ebd0_0.jpeg" onclick="openLb('jk_9201ebd0',0)"><img loading="lazy" src="img/jk_9201ebd0_1.jpeg" onclick="openLb('jk_9201ebd0',1)"><img loading="lazy" src="img/jk_9201ebd0_2.jpeg" onclick="openLb('jk_9201ebd0',2)"><img loading="lazy" src="img/jk_9201ebd0_3.jpeg" onclick="openLb('jk_9201ebd0',3)"><img loading="lazy" src="img/jk_9201ebd0_4.jpeg" onclick="openLb('jk_9201ebd0',4)"></div><div class="galn">5 photos · clique pour agrandir</div>
   <div class="pm">
-    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (40 m²)</li><li>Excellent prix/m² (30 €/m²)</li></ul>
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (40 m²)</li><li>Bon prix/m² (30 €/m²)</li></ul>
     <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201184%2040%20m2%20Paris%2014e%20gensdeconfiance.com" target="_blank" rel="noopener">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201184%2040%20m2%20Paris%2014e%20gensdeconfiance.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
   <div class="srcline">Source : gensdeconfiance.com</div>
 </article>
 <article class="card">
-  <div class="rank">#6</div>
+  <div class="rank">#9</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 39 €/m²</span></div>
     <div class="note" title="note /5">★★★★⯨ <b>4.5</b></div>
@@ -150,16 +210,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>15e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">6e ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/pap_e679d70e_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e679d70e_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e679d70e_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e679d70e_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e679d70e_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e679d70e_5.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/pap_e679d70e_0.jpg" onclick="openLb('pap_e679d70e',0)"><img loading="lazy" src="img/pap_e679d70e_1.jpg" onclick="openLb('pap_e679d70e',1)"><img loading="lazy" src="img/pap_e679d70e_2.jpg" onclick="openLb('pap_e679d70e',2)"><img loading="lazy" src="img/pap_e679d70e_3.jpg" onclick="openLb('pap_e679d70e',3)"><img loading="lazy" src="img/pap_e679d70e_4.jpg" onclick="openLb('pap_e679d70e',4)"><img loading="lazy" src="img/pap_e679d70e_5.jpg" onclick="openLb('pap_e679d70e',5)"></div><div class="galn">6 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Pas de tél public (formulaire propriétaire)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-15e-r418501040" target="_blank" rel="noopener">🔗 Voir sur PAP</a></div>
+  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-15e-r418501040" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur PAP</a></div>
   <div class="srcline">Source : pap.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#7</div>
+  <div class="rank">#10</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 35 €/m²</span></div>
     <div class="note" title="note /5">★★★★⯨ <b>4.5</b></div>
@@ -167,33 +227,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">34 m² · <b>15e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_e2c6fe2e_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_e2c6fe2e_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_e2c6fe2e_2.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_e2c6fe2e_0.jpg" onclick="openLb('jk_e2c6fe2e',0)"><img loading="lazy" src="img/jk_e2c6fe2e_1.jpg" onclick="openLb('jk_e2c6fe2e',1)"><img loading="lazy" src="img/jk_e2c6fe2e_2.jpg" onclick="openLb('jk_e2c6fe2e',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>DPE D (correct)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201200%2034%20m2%20Paris%2015e%20gensdeconfiance.com" target="_blank" rel="noopener">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201200%2034%20m2%20Paris%2015e%20gensdeconfiance.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
   <div class="srcline">Source : gensdeconfiance.com</div>
 </article>
 <article class="card">
-  <div class="rank">#8</div>
+  <div class="rank">#11</div>
   <div class="head">
-    <div class="price">1200€ <span class="cc">CC · 30 €/m²</span></div>
+    <div class="price">1200€ <span class="cc">CC · 34 €/m²</span></div>
     <div class="note" title="note /5">★★★★⯨ <b>4.5</b></div>
   </div>
-  <div class="meta">40 m² · <b>14e</b> · non meublé</div>
-  <div class="badges"><span class="b meuble">Non meublé</span><span class="b asc">Ascenseur</span><span class="b">4e ét.</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
-  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_2236b77c_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/jk_2236b77c_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/jk_2236b77c_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/jk_2236b77c_3.webp" onclick="lb(this.src)"></div>
+  <div class="meta">35 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er étagee ét.</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
   <div class="pm">
-    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>Grande surface (40 m²)</li><li>Excellent prix/m² (30 €/m²)</li><li>DPE D (correct)</li></ul>
-    <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201200%2040%20m2%20Paris%2014e%20123loger.com" target="_blank" rel="noopener">🔍 Retrouver l'annonce (123loger.com)</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75015/appartement/6a1be6066122/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#9</div>
+  <div class="rank">#12</div>
   <div class="head">
     <div class="price">850€ <span class="cc">CC · 31 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -201,16 +261,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">27 m² · <b>14e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_69051294c8_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_69051294c8_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_69051294c8_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_69051294c8_3.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_69051294c8_0.webp" onclick="openLb('cl_69051294c8',0)"><img loading="lazy" src="img/cl_69051294c8_1.webp" onclick="openLb('cl_69051294c8',1)"><img loading="lazy" src="img/cl_69051294c8_2.webp" onclick="openLb('cl_69051294c8',2)"><img loading="lazy" src="img/cl_69051294c8_3.webp" onclick="openLb('cl_69051294c8',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
   <div class="pm">
-    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Excellent prix/m² (31 €/m²)</li></ul>
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/69051294c8c7/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/69051294c8c7/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#10</div>
+  <div class="rank">#13</div>
+  <div class="head">
+    <div class="price">880€ <span class="cc">CC · 34 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">26 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">RDC</span><span class="b dpe dpe-f">DPE F</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3221763900_0.jpg" onclick="openLb('lbc_3221763900',0)"><img loading="lazy" src="img/lbc_3221763900_1.jpg" onclick="openLb('lbc_3221763900',1)"><img loading="lazy" src="img/lbc_3221763900_2.jpg" onclick="openLb('lbc_3221763900',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>Passoire thermique (DPE F)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3221763900" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#14</div>
   <div class="head">
     <div class="price">930€ <span class="cc">CC · 30 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -218,16 +295,50 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">31 m² · <b>13e</b> · non meublé</div>
   <div class="badges"><span class="b meuble">Non meublé</span><span class="b dpe dpe-e">DPE E</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.9 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/jk_12f530c0_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_12f530c0_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_12f530c0_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_12f530c0_3.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_12f530c0_0.jpg" onclick="openLb('jk_12f530c0',0)"><img loading="lazy" src="img/jk_12f530c0_1.jpg" onclick="openLb('jk_12f530c0',1)"><img loading="lazy" src="img/jk_12f530c0_2.jpg" onclick="openLb('jk_12f530c0',2)"><img loading="lazy" src="img/jk_12f530c0_3.jpg" onclick="openLb('jk_12f530c0',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
   <div class="pm">
-    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Excellent prix/m² (30 €/m²)</li></ul>
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Bon prix/m² (30 €/m²)</li></ul>
     <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%20930%2031%20m2%20Paris%2013e%20locservice.fr" target="_blank" rel="noopener">🔍 Retrouver l'annonce (locservice.fr)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%20930%2031%20m2%20Paris%2013e%20locservice.fr" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (locservice.fr)</a></div>
   <div class="srcline">Source : locservice.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#11</div>
+  <div class="rank">#15</div>
+  <div class="head">
+    <div class="price">950€ <span class="cc">CC · 29 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">33 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b asc">Ascenseur</span><span class="b">3e ét.</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Ascenseur</li><li>Bon prix/m² (29 €/m²)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/vaugirard-parc-des-expositions/273092945.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#16</div>
+  <div class="head">
+    <div class="price">1018€ <span class="cc">CC · 34 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">30 m² · <b>5e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">RDC</span></div>
+  <div class="temple">🥊 <b>2.2 km</b> du Temple Palais Royal</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-5eme-75/jardin-des-plantes/271796463.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#17</div>
   <div class="head">
     <div class="price">1030€ <span class="cc">CC · 37 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -235,16 +346,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">28 m² · <b>15e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">5e ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/pap_d8925a62_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_d8925a62_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_d8925a62_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_d8925a62_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_d8925a62_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_d8925a62_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_d8925a62_6.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_d8925a62_7.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/pap_d8925a62_0.jpg" onclick="openLb('pap_d8925a62',0)"><img loading="lazy" src="img/pap_d8925a62_1.jpg" onclick="openLb('pap_d8925a62',1)"><img loading="lazy" src="img/pap_d8925a62_2.jpg" onclick="openLb('pap_d8925a62',2)"><img loading="lazy" src="img/pap_d8925a62_3.jpg" onclick="openLb('pap_d8925a62',3)"><img loading="lazy" src="img/pap_d8925a62_4.jpg" onclick="openLb('pap_d8925a62',4)"><img loading="lazy" src="img/pap_d8925a62_5.jpg" onclick="openLb('pap_d8925a62',5)"><img loading="lazy" src="img/pap_d8925a62_6.jpg" onclick="openLb('pap_d8925a62',6)"><img loading="lazy" src="img/pap_d8925a62_7.jpg" onclick="openLb('pap_d8925a62',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Pas de tél public (formulaire propriétaire)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-15e-r177006048" target="_blank" rel="noopener">🔗 Voir sur PAP</a></div>
+  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-15e-r177006048" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur PAP</a></div>
   <div class="srcline">Source : pap.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#12</div>
+  <div class="rank">#18</div>
   <div class="head">
     <div class="price">1060€ <span class="cc">CC · 35 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -252,16 +363,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>15e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">RDC</span><span class="b dpe dpe-e">DPE E</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_ca94a0be_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_ca94a0be_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_ca94a0be_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_ca94a0be_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_ca94a0be_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_ca94a0be_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_ca94a0be_6.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_ca94a0be_0.jpg" onclick="openLb('jk_ca94a0be',0)"><img loading="lazy" src="img/jk_ca94a0be_1.jpg" onclick="openLb('jk_ca94a0be',1)"><img loading="lazy" src="img/jk_ca94a0be_2.jpg" onclick="openLb('jk_ca94a0be',2)"><img loading="lazy" src="img/jk_ca94a0be_3.jpg" onclick="openLb('jk_ca94a0be',3)"><img loading="lazy" src="img/jk_ca94a0be_4.jpg" onclick="openLb('jk_ca94a0be',4)"><img loading="lazy" src="img/jk_ca94a0be_5.jpg" onclick="openLb('jk_ca94a0be',5)"><img loading="lazy" src="img/jk_ca94a0be_6.jpg" onclick="openLb('jk_ca94a0be',6)"></div><div class="galn">7 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201060%2030%20m2%20Paris%2015e%20gensdeconfiance.com" target="_blank" rel="noopener">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201060%2030%20m2%20Paris%2015e%20gensdeconfiance.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
   <div class="srcline">Source : gensdeconfiance.com</div>
 </article>
 <article class="card">
-  <div class="rank">#13</div>
+  <div class="rank">#19</div>
+  <div class="head">
+    <div class="price">1060€ <span class="cc">CC · 32 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">33 m² · <b>13e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">1er ét.</span></div>
+  <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Ascenseur</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-13eme-75/buttes-aux-cailles-glaciere/246273313.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#20</div>
   <div class="head">
     <div class="price">1080€ <span class="cc">CC · 36 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -269,16 +397,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/pap_e5c9b5a9_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e5c9b5a9_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e5c9b5a9_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e5c9b5a9_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e5c9b5a9_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e5c9b5a9_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e5c9b5a9_6.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_e5c9b5a9_7.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/pap_e5c9b5a9_0.jpg" onclick="openLb('pap_e5c9b5a9',0)"><img loading="lazy" src="img/pap_e5c9b5a9_1.jpg" onclick="openLb('pap_e5c9b5a9',1)"><img loading="lazy" src="img/pap_e5c9b5a9_2.jpg" onclick="openLb('pap_e5c9b5a9',2)"><img loading="lazy" src="img/pap_e5c9b5a9_3.jpg" onclick="openLb('pap_e5c9b5a9',3)"><img loading="lazy" src="img/pap_e5c9b5a9_4.jpg" onclick="openLb('pap_e5c9b5a9',4)"><img loading="lazy" src="img/pap_e5c9b5a9_5.jpg" onclick="openLb('pap_e5c9b5a9',5)"><img loading="lazy" src="img/pap_e5c9b5a9_6.jpg" onclick="openLb('pap_e5c9b5a9',6)"><img loading="lazy" src="img/pap_e5c9b5a9_7.jpg" onclick="openLb('pap_e5c9b5a9',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Pas de tél public (formulaire propriétaire)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-13e-75013-r456300845" target="_blank" rel="noopener">🔗 Voir sur PAP</a></div>
+  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-13e-75013-r456300845" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur PAP</a></div>
   <div class="srcline">Source : pap.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#14</div>
+  <div class="rank">#21</div>
   <div class="head">
     <div class="price">1090€ <span class="cc">CC · 35 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -286,16 +414,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">31 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er ét.</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/jk_57f704e9_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/jk_57f704e9_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/jk_57f704e9_2.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_57f704e9_0.webp" onclick="openLb('jk_57f704e9',0)"><img loading="lazy" src="img/jk_57f704e9_1.webp" onclick="openLb('jk_57f704e9',1)"><img loading="lazy" src="img/jk_57f704e9_2.webp" onclick="openLb('jk_57f704e9',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>DPE D (correct)</li></ul>
     <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201090%2031%20m2%20Paris%2013e%20123loger.com" target="_blank" rel="noopener">🔍 Retrouver l'annonce (123loger.com)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201090%2031%20m2%20Paris%2013e%20123loger.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (123loger.com)</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#15</div>
+  <div class="rank">#22</div>
+  <div class="head">
+    <div class="price">1100€ <span class="cc">CC · 39 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">28 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er ét.</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3194441136_0.jpg" onclick="openLb('lbc_3194441136',0)"><img loading="lazy" src="img/lbc_3194441136_1.jpg" onclick="openLb('lbc_3194441136',1)"><img loading="lazy" src="img/lbc_3194441136_2.jpg" onclick="openLb('lbc_3194441136',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>DPE D (correct)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3194441136" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#23</div>
   <div class="head">
     <div class="price">1129€ <span class="cc">CC · 39 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -303,16 +448,67 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">29 m² · <b>14e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_67b2dbf91a_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67b2dbf91a_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67b2dbf91a_2.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_67b2dbf91a_0.webp" onclick="openLb('cl_67b2dbf91a',0)"><img loading="lazy" src="img/cl_67b2dbf91a_1.webp" onclick="openLb('cl_67b2dbf91a',1)"><img loading="lazy" src="img/cl_67b2dbf91a_2.webp" onclick="openLb('cl_67b2dbf91a',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/67b2dbf91afc/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/67b2dbf91afc/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#16</div>
+  <div class="rank">#24</div>
+  <div class="head">
+    <div class="price">1140€ <span class="cc">CC · 33 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">35 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b dpe dpe-d">DPE D</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/sl_260885603_0.jpg" onclick="openLb('sl_260885603',0)"><img loading="lazy" src="img/sl_260885603_1.jpg" onclick="openLb('sl_260885603',1)"><img loading="lazy" src="img/sl_260885603_2.jpg" onclick="openLb('sl_260885603',2)"><img loading="lazy" src="img/sl_260885603_3.jpg" onclick="openLb('sl_260885603',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>DPE D (correct)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/dupleix-motte-picquet/260885603.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#25</div>
+  <div class="head">
+    <div class="price">1150€ <span class="cc">CC · 38 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">30 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">RDC</span><span class="b dpe dpe-e">DPE E</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3216985874_0.jpg" onclick="openLb('lbc_3216985874',0)"><img loading="lazy" src="img/lbc_3216985874_1.jpg" onclick="openLb('lbc_3216985874',1)"><img loading="lazy" src="img/lbc_3216985874_2.jpg" onclick="openLb('lbc_3216985874',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3216985874" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#26</div>
+  <div class="head">
+    <div class="price">1156€ <span class="cc">CC · 33 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">35 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b asc">Ascenseur</span><span class="b">4e ét.</span><span class="b dpe dpe-d">DPE D</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/sl_245760447_0.jpg" onclick="openLb('sl_245760447',0)"><img loading="lazy" src="img/sl_245760447_1.jpg" onclick="openLb('sl_245760447',1)"><img loading="lazy" src="img/sl_245760447_2.jpg" onclick="openLb('sl_245760447',2)"><img loading="lazy" src="img/sl_245760447_3.jpg" onclick="openLb('sl_245760447',3)"><img loading="lazy" src="img/sl_245760447_4.jpg" onclick="openLb('sl_245760447',4)"><img loading="lazy" src="img/sl_245760447_5.jpg" onclick="openLb('sl_245760447',5)"><img loading="lazy" src="img/sl_245760447_6.jpg" onclick="openLb('sl_245760447',6)"><img loading="lazy" src="img/sl_245760447_7.jpg" onclick="openLb('sl_245760447',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Ascenseur</li><li>DPE D (correct)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/alleray-procession/245760447.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#27</div>
   <div class="head">
     <div class="price">1160€ <span class="cc">CC · 41 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -320,16 +516,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">28 m² · <b>15e</b> · non meublé</div>
   <div class="badges"><span class="b meuble">Non meublé</span><span class="b asc">Ascenseur</span><span class="b">4 eme étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_693e7d4b21_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_693e7d4b21_1.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_693e7d4b21_0.webp" onclick="openLb('cl_693e7d4b21',0)"><img loading="lazy" src="img/cl_693e7d4b21_1.webp" onclick="openLb('cl_693e7d4b21',1)"></div><div class="galn">2 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Prix/m² élevé (41 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75015/appartement/693e7d4b2182/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75015/appartement/693e7d4b2182/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#17</div>
+  <div class="rank">#28</div>
+  <div class="head">
+    <div class="price">1185€ <span class="cc">CC · 52 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">23 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">8e ét.</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3211815690_0.jpg" onclick="openLb('lbc_3211815690',0)"><img loading="lazy" src="img/lbc_3211815690_1.jpg" onclick="openLb('lbc_3211815690',1)"><img loading="lazy" src="img/lbc_3211815690_2.jpg" onclick="openLb('lbc_3211815690',2)"><img loading="lazy" src="img/lbc_3211815690_3.jpg" onclick="openLb('lbc_3211815690',3)"><img loading="lazy" src="img/lbc_3211815690_4.jpg" onclick="openLb('lbc_3211815690',4)"></div><div class="galn">5 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>DPE D (correct)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>Petit (23 m²)</li><li>Prix/m² élevé (52 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3211815690" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#29</div>
   <div class="head">
     <div class="price">1190€ <span class="cc">CC · 40 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -337,16 +550,50 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">5ème étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/cl_676426e709_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_676426e709_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_676426e709_2.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_676426e709_0.webp" onclick="openLb('cl_676426e709',0)"><img loading="lazy" src="img/cl_676426e709_1.webp" onclick="openLb('cl_676426e709',1)"><img loading="lazy" src="img/cl_676426e709_2.webp" onclick="openLb('cl_676426e709',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li></ul>
     <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/676426e7097a/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/676426e7097a/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#18</div>
+  <div class="rank">#30</div>
+  <div class="head">
+    <div class="price">1190€ <span class="cc">CC · 38 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">31 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">4e ét.</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Ascenseur</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-14eme-75/pernety/246052895.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#31</div>
+  <div class="head">
+    <div class="price">1198€ <span class="cc">CC · 33 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">36 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/sl_270015093_0.jpg" onclick="openLb('sl_270015093',0)"><img loading="lazy" src="img/sl_270015093_1.jpg" onclick="openLb('sl_270015093',1)"><img loading="lazy" src="img/sl_270015093_2.jpg" onclick="openLb('sl_270015093',2)"><img loading="lazy" src="img/sl_270015093_3.jpg" onclick="openLb('sl_270015093',3)"><img loading="lazy" src="img/sl_270015093_4.jpg" onclick="openLb('sl_270015093',4)"><img loading="lazy" src="img/sl_270015093_5.jpg" onclick="openLb('sl_270015093',5)"><img loading="lazy" src="img/sl_270015093_6.jpg" onclick="openLb('sl_270015093',6)"><img loading="lazy" src="img/sl_270015093_7.jpg" onclick="openLb('sl_270015093',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-14eme-75/pernety/270015093.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#32</div>
   <div class="head">
     <div class="price">1199€ <span class="cc">CC · 40 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -354,16 +601,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>14e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/pap_eace23b6_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_eace23b6_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_eace23b6_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_eace23b6_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_eace23b6_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_eace23b6_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_eace23b6_6.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/pap_eace23b6_7.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/pap_eace23b6_0.jpg" onclick="openLb('pap_eace23b6',0)"><img loading="lazy" src="img/pap_eace23b6_1.jpg" onclick="openLb('pap_eace23b6',1)"><img loading="lazy" src="img/pap_eace23b6_2.jpg" onclick="openLb('pap_eace23b6',2)"><img loading="lazy" src="img/pap_eace23b6_3.jpg" onclick="openLb('pap_eace23b6',3)"><img loading="lazy" src="img/pap_eace23b6_4.jpg" onclick="openLb('pap_eace23b6',4)"><img loading="lazy" src="img/pap_eace23b6_5.jpg" onclick="openLb('pap_eace23b6',5)"><img loading="lazy" src="img/pap_eace23b6_6.jpg" onclick="openLb('pap_eace23b6',6)"><img loading="lazy" src="img/pap_eace23b6_7.jpg" onclick="openLb('pap_eace23b6',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Pas de tél public (formulaire propriétaire)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-14e-r401100086" target="_blank" rel="noopener">🔗 Voir sur PAP</a></div>
+  <div class="contact"><a class="btn link" href="https://www.pap.fr/annonces/appartement-paris-14e-r401100086" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur PAP</a></div>
   <div class="srcline">Source : pap.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#19</div>
+  <div class="rank">#33</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 40 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -371,16 +618,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>5e</b> · non meublé</div>
   <div class="badges"><span class="b meuble">Non meublé</span><span class="b asc">Ascenseur</span><span class="b">6ème étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>2.2 km</b> du Temple Palais Royal</div>
-  <div class="gal"><img loading="lazy" src="img/cl_4c4a396a_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_4c4a396a_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_4c4a396a_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_4c4a396a_3.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_4c4a396a_0.webp" onclick="openLb('cl_4c4a396a',0)"><img loading="lazy" src="img/cl_4c4a396a_1.webp" onclick="openLb('cl_4c4a396a',1)"><img loading="lazy" src="img/cl_4c4a396a_2.webp" onclick="openLb('cl_4c4a396a',2)"><img loading="lazy" src="img/cl_4c4a396a_3.webp" onclick="openLb('cl_4c4a396a',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li></ul>
     <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75005/appartement/4c4a396a/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75005/appartement/4c4a396a/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#20</div>
+  <div class="rank">#34</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 34 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -388,16 +635,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">35 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/cl_6a2f640c18_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6a2f640c18_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6a2f640c18_2.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_6a2f640c18_0.webp" onclick="openLb('cl_6a2f640c18',0)"><img loading="lazy" src="img/cl_6a2f640c18_1.webp" onclick="openLb('cl_6a2f640c18',1)"><img loading="lazy" src="img/cl_6a2f640c18_2.webp" onclick="openLb('cl_6a2f640c18',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/6a2f640c1801/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/6a2f640c1801/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#21</div>
+  <div class="rank">#35</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 46 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
@@ -405,33 +652,84 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">26 m² · <b>15e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">1er étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_054f135d_0.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_054f135d_0.webp" onclick="openLb('cl_054f135d',0)"></div><div class="galn">1 photo · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Prix/m² élevé (46 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75015/appartement/054f135d/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75015/appartement/054f135d/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#22</div>
+  <div class="rank">#36</div>
   <div class="head">
-    <div class="price">1200€ <span class="cc">CC · 34 €/m²</span></div>
+    <div class="price">1200€ <span class="cc">CC · 36 €/m²</span></div>
     <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
   </div>
-  <div class="meta">35 m² · <b>15e</b> · meublé</div>
-  <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er étagee ét.</span><span class="b part">Particulier</span></div>
-  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
-  <div class="gal empty">Pas de photo récupérée</div>
+  <div class="meta">33 m² · <b>13e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">4e ét.</span><span class="b dpe dpe-e">DPE E</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3221884055_0.jpg" onclick="openLb('lbc_3221884055',0)"></div><div class="galn">1 photo · clique pour agrandir</div>
   <div class="pm">
-    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
-    <ul class="moins"><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li></ul>
+    <ul class="moins"></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75015/appartement/6a1be6066122/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
-  <div class="srcline">Source : 123loger.com</div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3221884055" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#23</div>
+  <div class="rank">#37</div>
+  <div class="head">
+    <div class="price">1200€ <span class="cc">CC · 36 €/m²</span></div>
+    <div class="note" title="note /5">★★★★☆ <b>4.0</b></div>
+  </div>
+  <div class="meta">33 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er ét.</span><span class="b dpe dpe-e">DPE E</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3218805094_0.jpg" onclick="openLb('lbc_3218805094',0)"></div><div class="galn">1 photo · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3218805094" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#38</div>
+  <div class="head">
+    <div class="price">850€ <span class="cc">CC · 35 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">24 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">3e ét.</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Ascenseur</li></ul>
+    <ul class="moins"><li>Petit (24 m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-14eme-75/mouton-duvernet/267728855.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#39</div>
+  <div class="head">
+    <div class="price">950€ <span class="cc">CC · 37 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">26 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">1er ét.</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/alleray-procession/232733215.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#40</div>
   <div class="head">
     <div class="price">990€ <span class="cc">CC · 40 €/m²</span></div>
     <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
@@ -439,16 +737,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">25 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/jk_50cd924f_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_50cd924f_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_50cd924f_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_50cd924f_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_50cd924f_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_50cd924f_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_50cd924f_6.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_50cd924f_0.jpg" onclick="openLb('jk_50cd924f',0)"><img loading="lazy" src="img/jk_50cd924f_1.jpg" onclick="openLb('jk_50cd924f',1)"><img loading="lazy" src="img/jk_50cd924f_2.jpg" onclick="openLb('jk_50cd924f',2)"><img loading="lazy" src="img/jk_50cd924f_3.jpg" onclick="openLb('jk_50cd924f',3)"><img loading="lazy" src="img/jk_50cd924f_4.jpg" onclick="openLb('jk_50cd924f',4)"><img loading="lazy" src="img/jk_50cd924f_5.jpg" onclick="openLb('jk_50cd924f',5)"><img loading="lazy" src="img/jk_50cd924f_6.jpg" onclick="openLb('jk_50cd924f',6)"></div><div class="galn">7 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Petit (25 m²)</li><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%20990%2025%20m2%20Paris%2013e%20gensdeconfiance.com" target="_blank" rel="noopener">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%20990%2025%20m2%20Paris%2013e%20gensdeconfiance.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
   <div class="srcline">Source : gensdeconfiance.com</div>
 </article>
 <article class="card">
-  <div class="rank">#24</div>
+  <div class="rank">#41</div>
   <div class="head">
     <div class="price">1000€ <span class="cc">CC · 42 €/m²</span></div>
     <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
@@ -456,16 +754,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">24 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">2ème étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/cl_6799ffd97c_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6799ffd97c_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6799ffd97c_2.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_6799ffd97c_0.webp" onclick="openLb('cl_6799ffd97c',0)"><img loading="lazy" src="img/cl_6799ffd97c_1.webp" onclick="openLb('cl_6799ffd97c',1)"><img loading="lazy" src="img/cl_6799ffd97c_2.webp" onclick="openLb('cl_6799ffd97c',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Petit (24 m²)</li><li>Prix/m² élevé (42 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/6799ffd97c7c/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/6799ffd97c7c/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#25</div>
+  <div class="rank">#42</div>
   <div class="head">
     <div class="price">1030€ <span class="cc">CC · 52 €/m²</span></div>
     <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
@@ -473,16 +771,67 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">20 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">1er étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/cl_9e57b4e7_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_9e57b4e7_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_9e57b4e7_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_9e57b4e7_3.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_9e57b4e7_0.webp" onclick="openLb('cl_9e57b4e7',0)"><img loading="lazy" src="img/cl_9e57b4e7_1.webp" onclick="openLb('cl_9e57b4e7',1)"><img loading="lazy" src="img/cl_9e57b4e7_2.webp" onclick="openLb('cl_9e57b4e7',2)"><img loading="lazy" src="img/cl_9e57b4e7_3.webp" onclick="openLb('cl_9e57b4e7',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li></ul>
     <ul class="moins"><li>Petit (20 m²)</li><li>Prix/m² élevé (52 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/9e57b4e7/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/9e57b4e7/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#26</div>
+  <div class="rank">#43</div>
+  <div class="head">
+    <div class="price">1035€ <span class="cc">CC · 36 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">29 m² · <b>13e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">2e ét.</span><span class="b dpe dpe-e">DPE E</span></div>
+  <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3204405418_0.jpg" onclick="openLb('lbc_3204405418',0)"><img loading="lazy" src="img/lbc_3204405418_1.jpg" onclick="openLb('lbc_3204405418',1)"><img loading="lazy" src="img/lbc_3204405418_2.jpg" onclick="openLb('lbc_3204405418',2)"><img loading="lazy" src="img/lbc_3204405418_3.jpg" onclick="openLb('lbc_3204405418',3)"><img loading="lazy" src="img/lbc_3204405418_4.jpg" onclick="openLb('lbc_3204405418',4)"><img loading="lazy" src="img/lbc_3204405418_5.jpg" onclick="openLb('lbc_3204405418',5)"></div><div class="galn">6 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3204405418" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#44</div>
+  <div class="head">
+    <div class="price">1087€ <span class="cc">CC · 39 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">28 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">1er ét.</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/violet-commerce/268946699.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#45</div>
+  <div class="head">
+    <div class="price">1098€ <span class="cc">CC · 37 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">30 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">2e ét.</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/vaugirard-parc-des-expositions/267790279.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#46</div>
   <div class="head">
     <div class="price">1100€ <span class="cc">CC · 37 €/m²</span></div>
     <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
@@ -490,16 +839,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>14e</b> · non meublé</div>
   <div class="badges"><span class="b meuble">Non meublé</span><span class="b dpe dpe-e">DPE E</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.1 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_d1f4f98f_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_d1f4f98f_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_d1f4f98f_2.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_d1f4f98f_0.jpg" onclick="openLb('jk_d1f4f98f',0)"><img loading="lazy" src="img/jk_d1f4f98f_1.jpg" onclick="openLb('jk_d1f4f98f',1)"><img loading="lazy" src="img/jk_d1f4f98f_2.jpg" onclick="openLb('jk_d1f4f98f',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201100%2030%20m2%20Paris%2014e%20locservice.fr" target="_blank" rel="noopener">🔍 Retrouver l'annonce (locservice.fr)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201100%2030%20m2%20Paris%2014e%20locservice.fr" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (locservice.fr)</a></div>
   <div class="srcline">Source : locservice.fr</div>
 </article>
 <article class="card">
-  <div class="rank">#27</div>
+  <div class="rank">#47</div>
   <div class="head">
     <div class="price">1100€ <span class="cc">CC · 55 €/m²</span></div>
     <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
@@ -507,16 +856,50 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">20 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">2ème étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/cl_69f78775aa_0.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_69f78775aa_0.webp" onclick="openLb('cl_69f78775aa',0)"></div><div class="galn">1 photo · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Ascenseur</li></ul>
     <ul class="moins"><li>Petit (20 m²)</li><li>Prix/m² élevé (55 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/69f78775aa21/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/69f78775aa21/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#28</div>
+  <div class="rank">#48</div>
+  <div class="head">
+    <div class="price">1104€ <span class="cc">CC</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">? m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/sl_272533525_0.jpg" onclick="openLb('sl_272533525',0)"><img loading="lazy" src="img/sl_272533525_1.jpg" onclick="openLb('sl_272533525',1)"><img loading="lazy" src="img/sl_272533525_2.jpg" onclick="openLb('sl_272533525',2)"><img loading="lazy" src="img/sl_272533525_3.jpg" onclick="openLb('sl_272533525',3)"><img loading="lazy" src="img/sl_272533525_4.jpg" onclick="openLb('sl_272533525',4)"><img loading="lazy" src="img/sl_272533525_5.jpg" onclick="openLb('sl_272533525',5)"><img loading="lazy" src="img/sl_272533525_6.jpg" onclick="openLb('sl_272533525',6)"><img loading="lazy" src="img/sl_272533525_7.jpg" onclick="openLb('sl_272533525',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/dupleix-motte-picquet/272533525.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#49</div>
+  <div class="head">
+    <div class="price">1150€ <span class="cc">CC · 46 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">25 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">RDC</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3206966267_0.jpg" onclick="openLb('lbc_3206966267',0)"><img loading="lazy" src="img/lbc_3206966267_1.jpg" onclick="openLb('lbc_3206966267',1)"><img loading="lazy" src="img/lbc_3206966267_2.jpg" onclick="openLb('lbc_3206966267',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>DPE D (correct)</li></ul>
+    <ul class="moins"><li>Petit (25 m²)</li><li>Prix/m² élevé (46 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3206966267" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#50</div>
   <div class="head">
     <div class="price">1162€ <span class="cc">CC · 35 €/m²</span></div>
     <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
@@ -524,16 +907,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">33 m² · <b>14e</b> · non meublé</div>
   <div class="badges"><span class="b meuble">Non meublé</span><span class="b asc">Ascenseur</span><span class="b">2e ét.</span><span class="b dpe dpe-d">DPE D</span></div>
   <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_3b603701_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_3b603701_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_3b603701_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_3b603701_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_3b603701_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_3b603701_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_3b603701_6.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_3b603701_7.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_3b603701_0.jpg" onclick="openLb('jk_3b603701',0)"><img loading="lazy" src="img/jk_3b603701_1.jpg" onclick="openLb('jk_3b603701',1)"><img loading="lazy" src="img/jk_3b603701_2.jpg" onclick="openLb('jk_3b603701',2)"><img loading="lazy" src="img/jk_3b603701_3.jpg" onclick="openLb('jk_3b603701',3)"><img loading="lazy" src="img/jk_3b603701_4.jpg" onclick="openLb('jk_3b603701',4)"><img loading="lazy" src="img/jk_3b603701_5.jpg" onclick="openLb('jk_3b603701',5)"><img loading="lazy" src="img/jk_3b603701_6.jpg" onclick="openLb('jk_3b603701',6)"><img loading="lazy" src="img/jk_3b603701_7.jpg" onclick="openLb('jk_3b603701',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Ascenseur</li><li>DPE D (correct)</li></ul>
     <ul class="moins"><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201162%2033%20m2%20Paris%2014e%20alain-rousseau" target="_blank" rel="noopener">🔍 Retrouver l'annonce (alain-rousseau)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201162%2033%20m2%20Paris%2014e%20alain-rousseau" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (alain-rousseau)</a></div>
   <div class="srcline">Source : alain-rousseau</div>
 </article>
 <article class="card">
-  <div class="rank">#29</div>
+  <div class="rank">#51</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 43 €/m²</span></div>
     <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
@@ -541,16 +924,67 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">28 m² · <b>7e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>1.4 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_6913f79c1d_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6913f79c1d_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6913f79c1d_2.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_6913f79c1d_0.webp" onclick="openLb('cl_6913f79c1d',0)"><img loading="lazy" src="img/cl_6913f79c1d_1.webp" onclick="openLb('cl_6913f79c1d',1)"><img loading="lazy" src="img/cl_6913f79c1d_2.webp" onclick="openLb('cl_6913f79c1d',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 1.4 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Prix/m² élevé (43 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75007/appartement/6913f79c1d83/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75007/appartement/6913f79c1d83/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#30</div>
+  <div class="rank">#52</div>
+  <div class="head">
+    <div class="price">1200€ <span class="cc">CC · 39 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">31 m² · <b>13e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er ét.</span></div>
+  <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li></ul>
+    <ul class="moins"></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-13eme-75/buttes-aux-cailles-glaciere/272759901.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#53</div>
+  <div class="head">
+    <div class="price">1200€ <span class="cc">CC · 35 €/m²</span></div>
+    <div class="note" title="note /5">★★★⯨☆ <b>3.5</b></div>
+  </div>
+  <div class="meta">34 m² · <b>5e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">4e ét.</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.2 km</b> du Temple Palais Royal</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3221050534_0.jpg" onclick="openLb('lbc_3221050534',0)"><img loading="lazy" src="img/lbc_3221050534_1.jpg" onclick="openLb('lbc_3221050534',1)"><img loading="lazy" src="img/lbc_3221050534_2.jpg" onclick="openLb('lbc_3221050534',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
+    <ul class="moins"><li>4e étage SANS ascenseur</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3221050534" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#54</div>
+  <div class="head">
+    <div class="price">945€ <span class="cc">CC · 33 €/m²</span></div>
+    <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
+  </div>
+  <div class="meta">29 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">5e ét.</span><span class="b dpe dpe-e">DPE E</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3213720238_0.jpg" onclick="openLb('lbc_3213720238',0)"><img loading="lazy" src="img/lbc_3213720238_1.jpg" onclick="openLb('lbc_3213720238',1)"><img loading="lazy" src="img/lbc_3213720238_2.jpg" onclick="openLb('lbc_3213720238',2)"><img loading="lazy" src="img/lbc_3213720238_3.jpg" onclick="openLb('lbc_3213720238',3)"><img loading="lazy" src="img/lbc_3213720238_4.jpg" onclick="openLb('lbc_3213720238',4)"><img loading="lazy" src="img/lbc_3213720238_5.jpg" onclick="openLb('lbc_3213720238',5)"><img loading="lazy" src="img/lbc_3213720238_6.jpg" onclick="openLb('lbc_3213720238',6)"><img loading="lazy" src="img/lbc_3213720238_7.jpg" onclick="openLb('lbc_3213720238',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>5e étage SANS ascenseur</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3213720238" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#55</div>
   <div class="head">
     <div class="price">950€ <span class="cc">CC · 45 €/m²</span></div>
     <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
@@ -558,16 +992,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">21 m² · <b>7e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">4ème étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>1.4 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/cl_67eff3ed01_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67eff3ed01_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67eff3ed01_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_67eff3ed01_3.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_67eff3ed01_0.webp" onclick="openLb('cl_67eff3ed01',0)"><img loading="lazy" src="img/cl_67eff3ed01_1.webp" onclick="openLb('cl_67eff3ed01',1)"><img loading="lazy" src="img/cl_67eff3ed01_2.webp" onclick="openLb('cl_67eff3ed01',2)"><img loading="lazy" src="img/cl_67eff3ed01_3.webp" onclick="openLb('cl_67eff3ed01',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 1.4 km (Grenelle / La Motte-Picquet)</li></ul>
     <ul class="moins"><li>Petit (21 m²)</li><li>Prix/m² élevé (45 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75007/appartement/67eff3ed01ac/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75007/appartement/67eff3ed01ac/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#31</div>
+  <div class="rank">#56</div>
+  <div class="head">
+    <div class="price">982€ <span class="cc">CC · 31 €/m²</span></div>
+    <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
+  </div>
+  <div class="meta">32 m² · <b>13e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">6e ét.</span></div>
+  <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Bon prix/m² (31 €/m²)</li></ul>
+    <ul class="moins"><li>6e étage SANS ascenseur</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-13eme-75/dunois-bibliotheque-jeanne-d-arc/268199459.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#57</div>
   <div class="head">
     <div class="price">1000€ <span class="cc">CC · 43 €/m²</span></div>
     <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
@@ -575,16 +1026,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">23 m² · <b>5e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">6ème étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>2.2 km</b> du Temple Palais Royal</div>
-  <div class="gal"><img loading="lazy" src="img/cl_6a2f53f7d3_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6a2f53f7d3_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_6a2f53f7d3_2.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_6a2f53f7d3_0.webp" onclick="openLb('cl_6a2f53f7d3',0)"><img loading="lazy" src="img/cl_6a2f53f7d3_1.webp" onclick="openLb('cl_6a2f53f7d3',1)"><img loading="lazy" src="img/cl_6a2f53f7d3_2.webp" onclick="openLb('cl_6a2f53f7d3',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Petit (23 m²)</li><li>Prix/m² élevé (43 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75005/appartement/6a2f53f7d3ff/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75005/appartement/6a2f53f7d3ff/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#32</div>
+  <div class="rank">#58</div>
+  <div class="head">
+    <div class="price">1000€ <span class="cc">CC · 53 €/m²</span></div>
+    <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
+  </div>
+  <div class="meta">19 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">2e ét.</span><span class="b dpe dpe-e">DPE E</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/sl_272190063_0.jpg" onclick="openLb('sl_272190063',0)"><img loading="lazy" src="img/sl_272190063_1.jpg" onclick="openLb('sl_272190063',1)"><img loading="lazy" src="img/sl_272190063_2.jpg" onclick="openLb('sl_272190063',2)"><img loading="lazy" src="img/sl_272190063_3.jpg" onclick="openLb('sl_272190063',3)"><img loading="lazy" src="img/sl_272190063_4.jpg" onclick="openLb('sl_272190063',4)"><img loading="lazy" src="img/sl_272190063_5.jpg" onclick="openLb('sl_272190063',5)"><img loading="lazy" src="img/sl_272190063_6.jpg" onclick="openLb('sl_272190063',6)"><img loading="lazy" src="img/sl_272190063_7.jpg" onclick="openLb('sl_272190063',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>Petit (19 m²)</li><li>Prix/m² élevé (53 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/alleray-procession/272190063.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#59</div>
   <div class="head">
     <div class="price">1004€ <span class="cc">CC · 33 €/m²</span></div>
     <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
@@ -592,16 +1060,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">30 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">4e ét.</span><span class="b dpe dpe-f">DPE F</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/jk_4147caf5_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_4147caf5_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_4147caf5_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_4147caf5_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_4147caf5_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_4147caf5_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_4147caf5_6.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_4147caf5_7.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_4147caf5_0.jpg" onclick="openLb('jk_4147caf5',0)"><img loading="lazy" src="img/jk_4147caf5_1.jpg" onclick="openLb('jk_4147caf5',1)"><img loading="lazy" src="img/jk_4147caf5_2.jpg" onclick="openLb('jk_4147caf5',2)"><img loading="lazy" src="img/jk_4147caf5_3.jpg" onclick="openLb('jk_4147caf5',3)"><img loading="lazy" src="img/jk_4147caf5_4.jpg" onclick="openLb('jk_4147caf5',4)"><img loading="lazy" src="img/jk_4147caf5_5.jpg" onclick="openLb('jk_4147caf5',5)"><img loading="lazy" src="img/jk_4147caf5_6.jpg" onclick="openLb('jk_4147caf5',6)"><img loading="lazy" src="img/jk_4147caf5_7.jpg" onclick="openLb('jk_4147caf5',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>4e étage SANS ascenseur</li><li>Passoire thermique (DPE F)</li><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201004%2030%20m2%20Paris%2013e%20gensdeconfiance.com" target="_blank" rel="noopener">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201004%2030%20m2%20Paris%2013e%20gensdeconfiance.com" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (gensdeconfiance.com)</a></div>
   <div class="srcline">Source : gensdeconfiance.com</div>
 </article>
 <article class="card">
-  <div class="rank">#33</div>
+  <div class="rank">#60</div>
+  <div class="head">
+    <div class="price">1007€ <span class="cc">CC · 35 €/m²</span></div>
+    <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
+  </div>
+  <div class="meta">28 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">6e ét.</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3221818202_0.jpg" onclick="openLb('lbc_3221818202',0)"><img loading="lazy" src="img/lbc_3221818202_1.jpg" onclick="openLb('lbc_3221818202',1)"><img loading="lazy" src="img/lbc_3221818202_2.jpg" onclick="openLb('lbc_3221818202',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>DPE D (correct)</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>6e étage SANS ascenseur</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3221818202" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#61</div>
   <div class="head">
     <div class="price">1166€ <span class="cc">CC · 38 €/m²</span></div>
     <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
@@ -609,16 +1094,33 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">31 m² · <b>15e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">4e ét.</span></div>
   <div class="temple">🥊 <b>1.9 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_8f9de6e4_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_8f9de6e4_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_8f9de6e4_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_8f9de6e4_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_8f9de6e4_4.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_8f9de6e4_5.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_8f9de6e4_6.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_8f9de6e4_7.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_8f9de6e4_0.jpg" onclick="openLb('jk_8f9de6e4',0)"><img loading="lazy" src="img/jk_8f9de6e4_1.jpg" onclick="openLb('jk_8f9de6e4',1)"><img loading="lazy" src="img/jk_8f9de6e4_2.jpg" onclick="openLb('jk_8f9de6e4',2)"><img loading="lazy" src="img/jk_8f9de6e4_3.jpg" onclick="openLb('jk_8f9de6e4',3)"><img loading="lazy" src="img/jk_8f9de6e4_4.jpg" onclick="openLb('jk_8f9de6e4',4)"><img loading="lazy" src="img/jk_8f9de6e4_5.jpg" onclick="openLb('jk_8f9de6e4',5)"><img loading="lazy" src="img/jk_8f9de6e4_6.jpg" onclick="openLb('jk_8f9de6e4',6)"><img loading="lazy" src="img/jk_8f9de6e4_7.jpg" onclick="openLb('jk_8f9de6e4',7)"></div><div class="galn">8 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li></ul>
     <ul class="moins"><li>4e étage SANS ascenseur</li><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201166%2031%20m2%20Paris%2015e%20parisattitude" target="_blank" rel="noopener">🔍 Retrouver l'annonce (parisattitude)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201166%2031%20m2%20Paris%2015e%20parisattitude" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (parisattitude)</a></div>
   <div class="srcline">Source : parisattitude</div>
 </article>
 <article class="card">
-  <div class="rank">#34</div>
+  <div class="rank">#62</div>
+  <div class="head">
+    <div class="price">1175€ <span class="cc">CC · 56 €/m²</span></div>
+    <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
+  </div>
+  <div class="meta">21 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b asc">Ascenseur</span><span class="b">10e ét.</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal empty">Pas de photo récupérée (voir l'annonce)</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Ascenseur</li></ul>
+    <ul class="moins"><li>Petit (21 m²)</li><li>Prix/m² élevé (56 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-14eme-75/jean-moulin-porte-d-orleans/270924175.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#63</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 48 €/m²</span></div>
     <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
@@ -626,16 +1128,16 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">25 m² · <b>5e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er étagee ét.</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>2.2 km</b> du Temple Palais Royal</div>
-  <div class="gal"><img loading="lazy" src="img/cl_680108b100_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_680108b100_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_680108b100_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_680108b100_3.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_680108b100_0.webp" onclick="openLb('cl_680108b100',0)"><img loading="lazy" src="img/cl_680108b100_1.webp" onclick="openLb('cl_680108b100',1)"><img loading="lazy" src="img/cl_680108b100_2.webp" onclick="openLb('cl_680108b100',2)"><img loading="lazy" src="img/cl_680108b100_3.webp" onclick="openLb('cl_680108b100',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Petit (25 m²)</li><li>Prix/m² élevé (48 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75005/appartement/680108b100b9/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75005/appartement/680108b100b9/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#35</div>
+  <div class="rank">#64</div>
   <div class="head">
     <div class="price">1200€ <span class="cc">CC · 48 €/m²</span></div>
     <div class="note" title="note /5">★★★☆☆ <b>3.0</b></div>
@@ -643,16 +1145,101 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">25 m² · <b>13e</b> · meublé</div>
   <div class="badges"><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
   <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
-  <div class="gal"><img loading="lazy" src="img/cl_68c0388618_0.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_68c0388618_1.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_68c0388618_2.webp" onclick="lb(this.src)"><img loading="lazy" src="img/cl_68c0388618_3.webp" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/cl_68c0388618_0.webp" onclick="openLb('cl_68c0388618',0)"><img loading="lazy" src="img/cl_68c0388618_1.webp" onclick="openLb('cl_68c0388618',1)"><img loading="lazy" src="img/cl_68c0388618_2.webp" onclick="openLb('cl_68c0388618',2)"><img loading="lazy" src="img/cl_68c0388618_3.webp" onclick="openLb('cl_68c0388618',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
     <ul class="moins"><li>Petit (25 m²)</li><li>Prix/m² élevé (48 €/m²)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
   </div>
-  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/68c03886183a/" target="_blank" rel="noopener">🔗 Voir sur 123Loger</a></div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75013/appartement/68c03886183a/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
   <div class="srcline">Source : 123loger.com</div>
 </article>
 <article class="card">
-  <div class="rank">#36</div>
+  <div class="rank">#65</div>
+  <div class="head">
+    <div class="price">695€ <span class="cc">CC · 17 €/m²</span></div>
+    <div class="note" title="note /5">★★⯨☆☆ <b>2.5</b></div>
+  </div>
+  <div class="meta">42 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b warn">⚠️ Prix douteux — vérifier</span><span class="b meuble">Meublé</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/cl_67f38d3318_0.webp" onclick="openLb('cl_67f38d3318',0)"><img loading="lazy" src="img/cl_67f38d3318_1.webp" onclick="openLb('cl_67f38d3318',1)"><img loading="lazy" src="img/cl_67f38d3318_2.webp" onclick="openLb('cl_67f38d3318',2)"><img loading="lazy" src="img/cl_67f38d3318_3.webp" onclick="openLb('cl_67f38d3318',3)"></div><div class="galn">4 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>Grande surface (42 m²)</li></ul>
+    <ul class="moins"><li>⚠️ Prix anormalement bas pour Paris (17 €/m²) → méfiance, vérifier que ce n&#x27;est pas une arnaque (jamais d&#x27;acompte avant visite)</li><li>Contact direct = compte Premium 123Loger (sinon on recoupe)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.123loger.com/location/paris-75014/appartement/67f38d3318f2/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur 123Loger</a></div>
+  <div class="srcline">Source : 123loger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#66</div>
+  <div class="head">
+    <div class="price">902€ <span class="cc">CC · 50 €/m²</span></div>
+    <div class="note" title="note /5">★★⯨☆☆ <b>2.5</b></div>
+  </div>
+  <div class="meta">18 m² · <b>13e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">6e ét.</span><span class="b dpe dpe-d">DPE D</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>3.6 km</b> du Temple République</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3217394839_0.jpg" onclick="openLb('lbc_3217394839',0)"><img loading="lazy" src="img/lbc_3217394839_1.jpg" onclick="openLb('lbc_3217394839',1)"><img loading="lazy" src="img/lbc_3217394839_2.jpg" onclick="openLb('lbc_3217394839',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>DPE D (correct)</li></ul>
+    <ul class="moins"><li>Petit (18 m²)</li><li>6e étage SANS ascenseur</li><li>Prix/m² élevé (50 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3217394839" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#67</div>
+  <div class="head">
+    <div class="price">908€ <span class="cc">CC · 39 €/m²</span></div>
+    <div class="note" title="note /5">★★⯨☆☆ <b>2.5</b></div>
+  </div>
+  <div class="meta">23 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">4e ét.</span><span class="b dpe dpe-e">DPE E</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/sl_265388649_0.jpg" onclick="openLb('sl_265388649',0)"><img loading="lazy" src="img/sl_265388649_1.jpg" onclick="openLb('sl_265388649',1)"><img loading="lazy" src="img/sl_265388649_2.jpg" onclick="openLb('sl_265388649',2)"><img loading="lazy" src="img/sl_265388649_3.jpg" onclick="openLb('sl_265388649',3)"><img loading="lazy" src="img/sl_265388649_4.jpg" onclick="openLb('sl_265388649',4)"><img loading="lazy" src="img/sl_265388649_5.jpg" onclick="openLb('sl_265388649',5)"><img loading="lazy" src="img/sl_265388649_6.jpg" onclick="openLb('sl_265388649',6)"></div><div class="galn">7 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>Petit (23 m²)</li><li>4e étage SANS ascenseur</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-15eme-75/violet-commerce/265388649.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#68</div>
+  <div class="head">
+    <div class="price">950€ <span class="cc">CC · 38 €/m²</span></div>
+    <div class="note" title="note /5">★★⯨☆☆ <b>2.5</b></div>
+  </div>
+  <div class="meta">25 m² · <b>15e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">6e ét.</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3220587013_0.jpg" onclick="openLb('lbc_3220587013',0)"><img loading="lazy" src="img/lbc_3220587013_1.jpg" onclick="openLb('lbc_3220587013',1)"><img loading="lazy" src="img/lbc_3220587013_2.jpg" onclick="openLb('lbc_3220587013',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>Petit (25 m²)</li><li>6e étage SANS ascenseur</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3220587013" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#69</div>
+  <div class="head">
+    <div class="price">1050€ <span class="cc">CC · 52 €/m²</span></div>
+    <div class="note" title="note /5">★★⯨☆☆ <b>2.5</b></div>
+  </div>
+  <div class="meta">20 m² · <b>6e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">1er ét.</span><span class="b dpe dpe-f">DPE F</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>1.4 km</b> du Temple Palais Royal</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3219043796_0.jpg" onclick="openLb('lbc_3219043796',0)"><img loading="lazy" src="img/lbc_3219043796_1.jpg" onclick="openLb('lbc_3219043796',1)"><img loading="lazy" src="img/lbc_3219043796_2.jpg" onclick="openLb('lbc_3219043796',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 1.4 km (Palais Royal)</li></ul>
+    <ul class="moins"><li>Petit (20 m²)</li><li>Passoire thermique (DPE F)</li><li>Prix/m² élevé (52 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3219043796" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#70</div>
   <div class="head">
     <div class="price">1060€ <span class="cc">CC · 41 €/m²</span></div>
     <div class="note" title="note /5">★★⯨☆☆ <b>2.5</b></div>
@@ -660,16 +1247,101 @@ footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);fon
   <div class="meta">26 m² · <b>14e</b> · non meublé</div>
   <div class="badges"><span class="b meuble">Non meublé</span><span class="b">7e ét.</span><span class="b dpe dpe-e">DPE E</span></div>
   <div class="temple">🥊 <b>2.9 km</b> du Temple Grenelle</div>
-  <div class="gal"><img loading="lazy" src="img/jk_61f4f29d_0.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_61f4f29d_1.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_61f4f29d_2.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_61f4f29d_3.jpg" onclick="lb(this.src)"><img loading="lazy" src="img/jk_61f4f29d_4.jpg" onclick="lb(this.src)"></div>
+  <div class="gal"><img loading="lazy" src="img/jk_61f4f29d_0.jpg" onclick="openLb('jk_61f4f29d',0)"><img loading="lazy" src="img/jk_61f4f29d_1.jpg" onclick="openLb('jk_61f4f29d',1)"><img loading="lazy" src="img/jk_61f4f29d_2.jpg" onclick="openLb('jk_61f4f29d',2)"><img loading="lazy" src="img/jk_61f4f29d_3.jpg" onclick="openLb('jk_61f4f29d',3)"><img loading="lazy" src="img/jk_61f4f29d_4.jpg" onclick="openLb('jk_61f4f29d',4)"></div><div class="galn">5 photos · clique pour agrandir</div>
   <div class="pm">
     <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li></ul>
     <ul class="moins"><li>7e étage SANS ascenseur</li><li>Prix/m² élevé (41 €/m²)</li><li>Lien d&#x27;origine masqué par Jinka → bouton recherche ci-dessous</li></ul>
   </div>
-  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201060%2026%20m2%20Paris%2014e%20IMMOJEUNE" target="_blank" rel="noopener">🔍 Retrouver l'annonce (IMMOJEUNE)</a></div>
+  <div class="contact"><a class="btn find" href="https://www.google.com/search?q=appartement%20louer%201060%2026%20m2%20Paris%2014e%20IMMOJEUNE" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔍 Retrouver l'annonce (IMMOJEUNE)</a></div>
   <div class="srcline">Source : IMMOJEUNE</div>
+</article>
+<article class="card">
+  <div class="rank">#71</div>
+  <div class="head">
+    <div class="price">1100€ <span class="cc">CC · 46 €/m²</span></div>
+    <div class="note" title="note /5">★★⯨☆☆ <b>2.5</b></div>
+  </div>
+  <div class="meta">24 m² · <b>15e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">4e ét.</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>0.8 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3189631963_0.jpg" onclick="openLb('lbc_3189631963',0)"><img loading="lazy" src="img/lbc_3189631963_1.jpg" onclick="openLb('lbc_3189631963',1)"><img loading="lazy" src="img/lbc_3189631963_2.jpg" onclick="openLb('lbc_3189631963',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li><li>Particulier · 0 frais d&#x27;agence</li><li>🥊 Temple à 0.8 km (Grenelle / La Motte-Picquet)</li></ul>
+    <ul class="moins"><li>Petit (24 m²)</li><li>4e étage SANS ascenseur</li><li>Prix/m² élevé (46 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3189631963" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#72</div>
+  <div class="head">
+    <div class="price">939€ <span class="cc">CC · 39 €/m²</span></div>
+    <div class="note" title="note /5">★★☆☆☆ <b>2.0</b></div>
+  </div>
+  <div class="meta">24 m² · <b>6e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">6e ét.</span><span class="b dpe dpe-e">DPE E</span></div>
+  <div class="temple">🥊 <b>1.4 km</b> du Temple Palais Royal</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3206071998_0.jpg" onclick="openLb('lbc_3206071998',0)"><img loading="lazy" src="img/lbc_3206071998_1.jpg" onclick="openLb('lbc_3206071998',1)"><img loading="lazy" src="img/lbc_3206071998_2.jpg" onclick="openLb('lbc_3206071998',2)"><img loading="lazy" src="img/lbc_3206071998_3.jpg" onclick="openLb('lbc_3206071998',3)"><img loading="lazy" src="img/lbc_3206071998_4.jpg" onclick="openLb('lbc_3206071998',4)"><img loading="lazy" src="img/lbc_3206071998_5.jpg" onclick="openLb('lbc_3206071998',5)"><img loading="lazy" src="img/lbc_3206071998_6.jpg" onclick="openLb('lbc_3206071998',6)"></div><div class="galn">7 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>🥊 Temple à 1.4 km (Palais Royal)</li></ul>
+    <ul class="moins"><li>Petit (24 m²)</li><li>6e étage SANS ascenseur</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3206071998" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
+</article>
+<article class="card">
+  <div class="rank">#73</div>
+  <div class="head">
+    <div class="price">955€ <span class="cc">CC · 43 €/m²</span></div>
+    <div class="note" title="note /5">★⯨☆☆☆ <b>1.5</b></div>
+  </div>
+  <div class="meta">22 m² · <b>14e</b> · meublé</div>
+  <div class="badges"><span class="b meuble">Meublé</span><span class="b">6e ét.</span><span class="b dpe dpe-f">DPE F</span></div>
+  <div class="temple">🥊 <b>2.7 km</b> du Temple Grenelle</div>
+  <div class="gal"><img loading="lazy" src="img/sl_265388567_0.jpg" onclick="openLb('sl_265388567',0)"><img loading="lazy" src="img/sl_265388567_1.jpg" onclick="openLb('sl_265388567',1)"><img loading="lazy" src="img/sl_265388567_2.jpg" onclick="openLb('sl_265388567',2)"><img loading="lazy" src="img/sl_265388567_3.jpg" onclick="openLb('sl_265388567',3)"><img loading="lazy" src="img/sl_265388567_4.jpg" onclick="openLb('sl_265388567',4)"><img loading="lazy" src="img/sl_265388567_5.jpg" onclick="openLb('sl_265388567',5)"><img loading="lazy" src="img/sl_265388567_6.jpg" onclick="openLb('sl_265388567',6)"></div><div class="galn">7 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Meublé</li></ul>
+    <ul class="moins"><li>Petit (22 m²)</li><li>6e étage SANS ascenseur</li><li>Passoire thermique (DPE F)</li><li>Prix/m² élevé (43 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.seloger.com/annonces/locations/appartement/paris-14eme-75/didot-porte-de-vanves/265388567.htm" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur SeLoger</a></div>
+  <div class="srcline">Source : seloger.com</div>
+</article>
+<article class="card">
+  <div class="rank">#74</div>
+  <div class="head">
+    <div class="price">1060€ <span class="cc">CC · 50 €/m²</span></div>
+    <div class="note" title="note /5">★⯨☆☆☆ <b>1.5</b></div>
+  </div>
+  <div class="meta">21 m² · <b>5e</b> · non meublé</div>
+  <div class="badges"><span class="b meuble">Non meublé</span><span class="b">4e ét.</span><span class="b dpe dpe-f">DPE F</span><span class="b part">Particulier</span></div>
+  <div class="temple">🥊 <b>2.2 km</b> du Temple Palais Royal</div>
+  <div class="gal"><img loading="lazy" src="img/lbc_3220446864_0.jpg" onclick="openLb('lbc_3220446864',0)"><img loading="lazy" src="img/lbc_3220446864_1.jpg" onclick="openLb('lbc_3220446864',1)"><img loading="lazy" src="img/lbc_3220446864_2.jpg" onclick="openLb('lbc_3220446864',2)"></div><div class="galn">3 photos · clique pour agrandir</div>
+  <div class="pm">
+    <ul class="plus"><li>Non meublé (à voir selon ton mobilier)</li><li>Particulier · 0 frais d&#x27;agence</li></ul>
+    <ul class="moins"><li>Petit (21 m²)</li><li>4e étage SANS ascenseur</li><li>Passoire thermique (DPE F)</li><li>Prix/m² élevé (50 €/m²)</li></ul>
+  </div>
+  <div class="contact"><a class="btn link" href="https://www.leboncoin.fr/ad/locations/3220446864" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">🔗 Voir sur LeBonCoin</a></div>
+  <div class="srcline">Source : leboncoin.fr</div>
 </article>
 </div>
 <footer>Note /5 = rapport qualité-prix (prix/m², surface, meublé, étage/ascenseur, DPE, frais d'agence, proximité Temple). Les charges sont confirmées « comprises » sur PAP et 123Loger ; à reconfirmer sur certaines annonces Jinka. SeLoger et LeBonCoin seront ajoutés au prochain passage.</footer>
-<div id="lbx" onclick="this.style.display='none'"><img id="lbi" src=""></div>
-<script>function lb(s){document.getElementById('lbi').src=s;document.getElementById('lbx').style.display='flex';}</script>
+<div id="lbx" onclick="if(event.target.id=='lbx')closeLb()">
+  <button class="lbnav prev" onclick="navLb(-1)" aria-label="Précédente">&#8249;</button>
+  <img id="lbi" src="" alt="">
+  <button class="lbnav next" onclick="navLb(1)" aria-label="Suivante">&#8250;</button>
+  <button class="lbclose" onclick="closeLb()" aria-label="Fermer">&#10005;</button>
+  <div class="lbcount" id="lbc"></div>
+</div>
+<script>
+var GAL={"lbc_3212319726": ["img/lbc_3212319726_0.jpg", "img/lbc_3212319726_1.jpg", "img/lbc_3212319726_2.jpg"], "jk_2236b77c": ["img/jk_2236b77c_0.webp", "img/jk_2236b77c_1.webp", "img/jk_2236b77c_2.webp", "img/jk_2236b77c_3.webp"], "pap_2181cbcc": ["img/pap_2181cbcc_0.jpg", "img/pap_2181cbcc_1.jpg", "img/pap_2181cbcc_2.jpg", "img/pap_2181cbcc_3.jpg", "img/pap_2181cbcc_4.jpg", "img/pap_2181cbcc_5.jpg", "img/pap_2181cbcc_6.jpg"], "cl_68ee47470f": ["img/cl_68ee47470f_0.webp", "img/cl_68ee47470f_1.webp", "img/cl_68ee47470f_2.webp", "img/cl_68ee47470f_3.webp"], "jk_9201ebd0": ["img/jk_9201ebd0_0.jpeg", "img/jk_9201ebd0_1.jpeg", "img/jk_9201ebd0_2.jpeg", "img/jk_9201ebd0_3.jpeg", "img/jk_9201ebd0_4.jpeg"], "pap_e679d70e": ["img/pap_e679d70e_0.jpg", "img/pap_e679d70e_1.jpg", "img/pap_e679d70e_2.jpg", "img/pap_e679d70e_3.jpg", "img/pap_e679d70e_4.jpg", "img/pap_e679d70e_5.jpg"], "jk_e2c6fe2e": ["img/jk_e2c6fe2e_0.jpg", "img/jk_e2c6fe2e_1.jpg", "img/jk_e2c6fe2e_2.jpg"], "cl_69051294c8": ["img/cl_69051294c8_0.webp", "img/cl_69051294c8_1.webp", "img/cl_69051294c8_2.webp", "img/cl_69051294c8_3.webp"], "lbc_3221763900": ["img/lbc_3221763900_0.jpg", "img/lbc_3221763900_1.jpg", "img/lbc_3221763900_2.jpg"], "jk_12f530c0": ["img/jk_12f530c0_0.jpg", "img/jk_12f530c0_1.jpg", "img/jk_12f530c0_2.jpg", "img/jk_12f530c0_3.jpg"], "pap_d8925a62": ["img/pap_d8925a62_0.jpg", "img/pap_d8925a62_1.jpg", "img/pap_d8925a62_2.jpg", "img/pap_d8925a62_3.jpg", "img/pap_d8925a62_4.jpg", "img/pap_d8925a62_5.jpg", "img/pap_d8925a62_6.jpg", "img/pap_d8925a62_7.jpg"], "jk_ca94a0be": ["img/jk_ca94a0be_0.jpg", "img/jk_ca94a0be_1.jpg", "img/jk_ca94a0be_2.jpg", "img/jk_ca94a0be_3.jpg", "img/jk_ca94a0be_4.jpg", "img/jk_ca94a0be_5.jpg", "img/jk_ca94a0be_6.jpg"], "pap_e5c9b5a9": ["img/pap_e5c9b5a9_0.jpg", "img/pap_e5c9b5a9_1.jpg", "img/pap_e5c9b5a9_2.jpg", "img/pap_e5c9b5a9_3.jpg", "img/pap_e5c9b5a9_4.jpg", "img/pap_e5c9b5a9_5.jpg", "img/pap_e5c9b5a9_6.jpg", "img/pap_e5c9b5a9_7.jpg"], "jk_57f704e9": ["img/jk_57f704e9_0.webp", "img/jk_57f704e9_1.webp", "img/jk_57f704e9_2.webp"], "lbc_3194441136": ["img/lbc_3194441136_0.jpg", "img/lbc_3194441136_1.jpg", "img/lbc_3194441136_2.jpg"], "cl_67b2dbf91a": ["img/cl_67b2dbf91a_0.webp", "img/cl_67b2dbf91a_1.webp", "img/cl_67b2dbf91a_2.webp"], "sl_260885603": ["img/sl_260885603_0.jpg", "img/sl_260885603_1.jpg", "img/sl_260885603_2.jpg", "img/sl_260885603_3.jpg"], "lbc_3216985874": ["img/lbc_3216985874_0.jpg", "img/lbc_3216985874_1.jpg", "img/lbc_3216985874_2.jpg"], "sl_245760447": ["img/sl_245760447_0.jpg", "img/sl_245760447_1.jpg", "img/sl_245760447_2.jpg", "img/sl_245760447_3.jpg", "img/sl_245760447_4.jpg", "img/sl_245760447_5.jpg", "img/sl_245760447_6.jpg", "img/sl_245760447_7.jpg"], "cl_693e7d4b21": ["img/cl_693e7d4b21_0.webp", "img/cl_693e7d4b21_1.webp"], "lbc_3211815690": ["img/lbc_3211815690_0.jpg", "img/lbc_3211815690_1.jpg", "img/lbc_3211815690_2.jpg", "img/lbc_3211815690_3.jpg", "img/lbc_3211815690_4.jpg"], "cl_676426e709": ["img/cl_676426e709_0.webp", "img/cl_676426e709_1.webp", "img/cl_676426e709_2.webp"], "sl_270015093": ["img/sl_270015093_0.jpg", "img/sl_270015093_1.jpg", "img/sl_270015093_2.jpg", "img/sl_270015093_3.jpg", "img/sl_270015093_4.jpg", "img/sl_270015093_5.jpg", "img/sl_270015093_6.jpg", "img/sl_270015093_7.jpg"], "pap_eace23b6": ["img/pap_eace23b6_0.jpg", "img/pap_eace23b6_1.jpg", "img/pap_eace23b6_2.jpg", "img/pap_eace23b6_3.jpg", "img/pap_eace23b6_4.jpg", "img/pap_eace23b6_5.jpg", "img/pap_eace23b6_6.jpg", "img/pap_eace23b6_7.jpg"], "cl_4c4a396a": ["img/cl_4c4a396a_0.webp", "img/cl_4c4a396a_1.webp", "img/cl_4c4a396a_2.webp", "img/cl_4c4a396a_3.webp"], "cl_6a2f640c18": ["img/cl_6a2f640c18_0.webp", "img/cl_6a2f640c18_1.webp", "img/cl_6a2f640c18_2.webp"], "cl_054f135d": ["img/cl_054f135d_0.webp"], "lbc_3221884055": ["img/lbc_3221884055_0.jpg"], "lbc_3218805094": ["img/lbc_3218805094_0.jpg"], "jk_50cd924f": ["img/jk_50cd924f_0.jpg", "img/jk_50cd924f_1.jpg", "img/jk_50cd924f_2.jpg", "img/jk_50cd924f_3.jpg", "img/jk_50cd924f_4.jpg", "img/jk_50cd924f_5.jpg", "img/jk_50cd924f_6.jpg"], "cl_6799ffd97c": ["img/cl_6799ffd97c_0.webp", "img/cl_6799ffd97c_1.webp", "img/cl_6799ffd97c_2.webp"], "cl_9e57b4e7": ["img/cl_9e57b4e7_0.webp", "img/cl_9e57b4e7_1.webp", "img/cl_9e57b4e7_2.webp", "img/cl_9e57b4e7_3.webp"], "lbc_3204405418": ["img/lbc_3204405418_0.jpg", "img/lbc_3204405418_1.jpg", "img/lbc_3204405418_2.jpg", "img/lbc_3204405418_3.jpg", "img/lbc_3204405418_4.jpg", "img/lbc_3204405418_5.jpg"], "jk_d1f4f98f": ["img/jk_d1f4f98f_0.jpg", "img/jk_d1f4f98f_1.jpg", "img/jk_d1f4f98f_2.jpg"], "cl_69f78775aa": ["img/cl_69f78775aa_0.webp"], "sl_272533525": ["img/sl_272533525_0.jpg", "img/sl_272533525_1.jpg", "img/sl_272533525_2.jpg", "img/sl_272533525_3.jpg", "img/sl_272533525_4.jpg", "img/sl_272533525_5.jpg", "img/sl_272533525_6.jpg", "img/sl_272533525_7.jpg"], "lbc_3206966267": ["img/lbc_3206966267_0.jpg", "img/lbc_3206966267_1.jpg", "img/lbc_3206966267_2.jpg"], "jk_3b603701": ["img/jk_3b603701_0.jpg", "img/jk_3b603701_1.jpg", "img/jk_3b603701_2.jpg", "img/jk_3b603701_3.jpg", "img/jk_3b603701_4.jpg", "img/jk_3b603701_5.jpg", "img/jk_3b603701_6.jpg", "img/jk_3b603701_7.jpg"], "cl_6913f79c1d": ["img/cl_6913f79c1d_0.webp", "img/cl_6913f79c1d_1.webp", "img/cl_6913f79c1d_2.webp"], "lbc_3221050534": ["img/lbc_3221050534_0.jpg", "img/lbc_3221050534_1.jpg", "img/lbc_3221050534_2.jpg"], "lbc_3213720238": ["img/lbc_3213720238_0.jpg", "img/lbc_3213720238_1.jpg", "img/lbc_3213720238_2.jpg", "img/lbc_3213720238_3.jpg", "img/lbc_3213720238_4.jpg", "img/lbc_3213720238_5.jpg", "img/lbc_3213720238_6.jpg", "img/lbc_3213720238_7.jpg"], "cl_67eff3ed01": ["img/cl_67eff3ed01_0.webp", "img/cl_67eff3ed01_1.webp", "img/cl_67eff3ed01_2.webp", "img/cl_67eff3ed01_3.webp"], "cl_6a2f53f7d3": ["img/cl_6a2f53f7d3_0.webp", "img/cl_6a2f53f7d3_1.webp", "img/cl_6a2f53f7d3_2.webp"], "sl_272190063": ["img/sl_272190063_0.jpg", "img/sl_272190063_1.jpg", "img/sl_272190063_2.jpg", "img/sl_272190063_3.jpg", "img/sl_272190063_4.jpg", "img/sl_272190063_5.jpg", "img/sl_272190063_6.jpg", "img/sl_272190063_7.jpg"], "jk_4147caf5": ["img/jk_4147caf5_0.jpg", "img/jk_4147caf5_1.jpg", "img/jk_4147caf5_2.jpg", "img/jk_4147caf5_3.jpg", "img/jk_4147caf5_4.jpg", "img/jk_4147caf5_5.jpg", "img/jk_4147caf5_6.jpg", "img/jk_4147caf5_7.jpg"], "lbc_3221818202": ["img/lbc_3221818202_0.jpg", "img/lbc_3221818202_1.jpg", "img/lbc_3221818202_2.jpg"], "jk_8f9de6e4": ["img/jk_8f9de6e4_0.jpg", "img/jk_8f9de6e4_1.jpg", "img/jk_8f9de6e4_2.jpg", "img/jk_8f9de6e4_3.jpg", "img/jk_8f9de6e4_4.jpg", "img/jk_8f9de6e4_5.jpg", "img/jk_8f9de6e4_6.jpg", "img/jk_8f9de6e4_7.jpg"], "cl_680108b100": ["img/cl_680108b100_0.webp", "img/cl_680108b100_1.webp", "img/cl_680108b100_2.webp", "img/cl_680108b100_3.webp"], "cl_68c0388618": ["img/cl_68c0388618_0.webp", "img/cl_68c0388618_1.webp", "img/cl_68c0388618_2.webp", "img/cl_68c0388618_3.webp"], "cl_67f38d3318": ["img/cl_67f38d3318_0.webp", "img/cl_67f38d3318_1.webp", "img/cl_67f38d3318_2.webp", "img/cl_67f38d3318_3.webp"], "lbc_3217394839": ["img/lbc_3217394839_0.jpg", "img/lbc_3217394839_1.jpg", "img/lbc_3217394839_2.jpg"], "sl_265388649": ["img/sl_265388649_0.jpg", "img/sl_265388649_1.jpg", "img/sl_265388649_2.jpg", "img/sl_265388649_3.jpg", "img/sl_265388649_4.jpg", "img/sl_265388649_5.jpg", "img/sl_265388649_6.jpg"], "lbc_3220587013": ["img/lbc_3220587013_0.jpg", "img/lbc_3220587013_1.jpg", "img/lbc_3220587013_2.jpg"], "lbc_3219043796": ["img/lbc_3219043796_0.jpg", "img/lbc_3219043796_1.jpg", "img/lbc_3219043796_2.jpg"], "jk_61f4f29d": ["img/jk_61f4f29d_0.jpg", "img/jk_61f4f29d_1.jpg", "img/jk_61f4f29d_2.jpg", "img/jk_61f4f29d_3.jpg", "img/jk_61f4f29d_4.jpg"], "lbc_3189631963": ["img/lbc_3189631963_0.jpg", "img/lbc_3189631963_1.jpg", "img/lbc_3189631963_2.jpg"], "lbc_3206071998": ["img/lbc_3206071998_0.jpg", "img/lbc_3206071998_1.jpg", "img/lbc_3206071998_2.jpg", "img/lbc_3206071998_3.jpg", "img/lbc_3206071998_4.jpg", "img/lbc_3206071998_5.jpg", "img/lbc_3206071998_6.jpg"], "sl_265388567": ["img/sl_265388567_0.jpg", "img/sl_265388567_1.jpg", "img/sl_265388567_2.jpg", "img/sl_265388567_3.jpg", "img/sl_265388567_4.jpg", "img/sl_265388567_5.jpg", "img/sl_265388567_6.jpg"], "lbc_3220446864": ["img/lbc_3220446864_0.jpg", "img/lbc_3220446864_1.jpg", "img/lbc_3220446864_2.jpg"]};var curId=null,curI=0;
+function el(i){return document.getElementById(i);}
+function showLb(){var a=GAL[curId]||[];if(!a.length)return;curI=(curI%a.length+a.length)%a.length;el('lbi').src=a[curI];el('lbc').textContent=(curI+1)+' / '+a.length;el('lbx').querySelectorAll('.lbnav').forEach(function(b){b.style.display=a.length>1?'flex':'none';});}
+function openLb(id,i){curId=id;curI=i;showLb();el('lbx').style.display='flex';}
+function navLb(d){curI+=d;showLb();}
+function closeLb(){el('lbx').style.display='none';}
+document.addEventListener('keydown',function(e){if(el('lbx').style.display!=='flex')return;if(e.key==='ArrowLeft')navLb(-1);else if(e.key==='ArrowRight')navLb(1);else if(e.key==='Escape')closeLb();});
+var _sx=0,_lb=el('lbx');
+_lb.addEventListener('touchstart',function(e){_sx=e.touches[0].clientX;},{passive:true});
+_lb.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-_sx;if(Math.abs(dx)>40)navLb(dx<0?1:-1);},{passive:true});
+</script>
 </body></html>
