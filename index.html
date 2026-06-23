@@ -2,7 +2,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Apparts Paris pour Léa — T2 ≤ 1200€ CC</title>
 <style>
-:root{--bg:#11100e;--card:#1b1916;--ink:#f2ede3;--muted:#a59f93;--gold:#c9a24b;--green:#5bbb7b;--red:#d9776b;--line:#2c2925}
+:root{--bg:#f6f5f2;--card:#ffffff;--ink:#1d1b18;--muted:#73706a;--gold:#9c7a26;--green:#1f7a44;--red:#b23b2e;--line:#e6e2da}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
 header{padding:42px 22px 26px;max-width:1100px;margin:0 auto}
@@ -11,8 +11,8 @@ h1{font:600 30px/1.2 Georgia,serif;margin:0 0 8px}
 .legend{margin-top:16px;display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
 .legend b{color:var(--gold)}
 .grid{max-width:1100px;margin:0 auto;padding:0 18px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative}
-.rank{position:absolute;top:-10px;left:14px;background:var(--gold);color:#1a1712;font-weight:700;font-size:12px;padding:2px 9px;border-radius:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;box-shadow:0 1px 3px rgba(20,18,14,.05)}
+.rank{position:absolute;top:-10px;left:14px;background:var(--gold);color:#fff;font-weight:700;font-size:12px;padding:2px 9px;border-radius:20px}
 .head{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px}
 .price{font:700 25px/1 Georgia,serif}
 .cc{font-size:12px;color:var(--muted);font-weight:400}
@@ -21,26 +21,26 @@ h1{font:600 30px/1.2 Georgia,serif;margin:0 0 8px}
 .meta{color:var(--muted);margin:6px 0 10px;font-size:14px}
 .badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .b{font-size:11.5px;padding:3px 8px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
-.b.meuble{color:var(--gold);border-color:#4a3f23}
-.b.asc{color:var(--green);border-color:#284a33}
-.b.part{color:#9fc9e8;border-color:#274050}
-.b.dpe-a,.b.dpe-b,.b.dpe-c{color:#5bbb7b}.b.dpe-d{color:#cdbb5b}.b.dpe-e{color:#d8a85b}.b.dpe-f,.b.dpe-g{color:var(--red)}
-.temple{font-size:13px;color:#e0c98a;margin-bottom:10px}
+.b.meuble{color:var(--gold);border-color:#e3d3a5;background:#faf5e8}
+.b.asc{color:var(--green);border-color:#bfe0cb;background:#eef7f1}
+.b.part{color:#1f5d80;border-color:#bcd9e8;background:#eef5fa}
+.b.dpe-a,.b.dpe-b,.b.dpe-c{color:#1f7a44}.b.dpe-d{color:#8a7416}.b.dpe-e{color:#b5731f}.b.dpe-f,.b.dpe-g{color:var(--red)}
+.temple{font-size:13px;color:#7a5f17;margin-bottom:10px}
 .gal{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:thin}
-.gal img{height:118px;border-radius:8px;cursor:pointer;object-fit:cover;flex:0 0 auto}
+.gal img{height:118px;border-radius:8px;cursor:pointer;object-fit:cover;flex:0 0 auto;border:1px solid var(--line)}
 .gal.empty{color:var(--muted);font-size:13px;font-style:italic}
 .pm{display:grid;grid-template-columns:1fr;gap:4px;margin-bottom:12px}
 .pm ul{margin:0;padding:0;list-style:none}
-.pm .plus li{font-size:13px;color:#bfe3cb;padding:1px 0}
+.pm .plus li{font-size:13px;color:#1f7a44;padding:1px 0}
 .pm .plus li:before{content:"✅ "}
-.pm .moins li{font-size:13px;color:#e6b8b0;padding:1px 0}
+.pm .moins li{font-size:13px;color:#b23b2e;padding:1px 0}
 .pm .moins li:before{content:"❌ "}
 .contact{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .btn{font-size:13px;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
-.btn.tel{background:var(--green);color:#0e1a12}
-.btn.link{background:#2a2723;color:var(--gold);border:1px solid #4a3f23}
-.btn.find{background:#2a2723;color:#9fc9e8;border:1px solid #274050}
-.srcline{font-size:11.5px;color:#6f6a60}
+.btn.tel{background:var(--green);color:#fff}
+.btn.link{background:#faf5e8;color:var(--gold);border:1px solid #e3d3a5}
+.btn.find{background:#eef5fa;color:#1f5d80;border:1px solid #bcd9e8}
+.srcline{font-size:11.5px;color:#9a958c}
 #lbx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out}
 #lbx img{max-width:94vw;max-height:92vh;border-radius:10px}
 footer{max-width:1100px;margin:0 auto;padding:0 22px 50px;color:var(--muted);font-size:13px}
