@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Appartements pour Léa · Paris Rive Gauche</title>
+<style>
+:root{
+  --bg:#f4f1ec; --card:#fffdf9; --ink:#1c1a17; --muted:#6f6a62;
+  --line:#e7e1d6; --accent:#9a6a3a; --accent2:#c2925a; --ok:#2f7d4f; --no:#b23b3b;
+  --shadow:0 1px 2px rgba(40,34,24,.05),0 8px 24px rgba(40,34,24,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.5}
+header.hero{padding:48px 20px 28px;text-align:center;max-width:1180px;margin:0 auto}
+.hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 6px;letter-spacing:-.02em;font-weight:800}
+.hero .sub{color:var(--muted);font-size:17px;margin:0 auto;max-width:640px}
+.criteria{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px auto 0;max-width:760px}
+.criteria span{background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:7px 15px;font-size:13.5px;font-weight:600;box-shadow:var(--shadow)}
+.criteria span b{color:var(--accent)}
+.grid{max-width:1180px;margin:30px auto 70px;padding:0 18px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column}
+.gallery{position:relative;aspect-ratio:4/3;background:#000;overflow:hidden}
+.track{display:flex;height:100%;scroll-snap-type:x mandatory;overflow-x:auto;scroll-behavior:smooth;
+  scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.track img{min-width:100%;height:100%;object-fit:cover;scroll-snap-align:center;cursor:zoom-in}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:none;
+  background:rgba(0,0,0,.42);color:#fff;font-size:26px;line-height:1;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:.18s;backdrop-filter:blur(3px)}
+.gallery:hover .nav{opacity:1}
+.nav.prev{left:10px} .nav.next{right:10px}
+.count{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.55);color:#fff;
+  font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px}
+.cdc{position:absolute;top:12px;left:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:13px}
+.topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.price{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.price span{font-size:18px;font-weight:700}
+.price small{font-size:12px;color:var(--muted);font-weight:600}
+.rating{text-align:right;flex-shrink:0}
+.stars{color:var(--accent2);font-size:18px;letter-spacing:1px}
+.rnum{font-weight:800;font-size:15px} .rnum small{color:var(--muted);font-weight:600;font-size:12px}
+.ownerline{font-size:13px;color:var(--muted);margin-top:-4px}
+.owner{display:inline-block;font-weight:700;padding:2px 8px;border-radius:6px;font-size:12px}
+.owner.part{background:#e6f3ec;color:var(--ok)} .owner.agc{background:#f0ece4;color:#8a7a5e}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:#f3efe7;border:1px solid var(--line);border-radius:8px;padding:4px 10px;
+  font-size:12.5px;font-weight:600}
+.chip.big{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.ok{background:#e6f3ec;color:var(--ok);border-color:#cfe6d8}
+.chip.no{background:#fbecec;color:var(--no);border-color:#f2d4d4}
+.chip.dpe{color:#1c1a17;border:none;font-weight:800}
+.chip.arr{background:#fff;color:var(--accent)}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid var(--line);padding-top:13px}
+.pm h4{margin:0 0 6px;font-size:13px}
+.pm ul{margin:0;padding-left:17px;font-size:13px;color:#3b3731}
+.pm li{margin:2px 0}
+.minus ul{color:#5a544c}
+.desc{font-size:13.5px;border-top:1px solid var(--line);padding-top:10px}
+.desc summary{cursor:pointer;font-weight:700;color:var(--accent);font-size:13px}
+.desc p{color:#4a453d;margin:8px 0 0;white-space:pre-line}
+.trunc{color:var(--muted);font-style:italic}
+.contact{display:flex;flex-wrap:wrap;gap:9px;border-top:1px solid var(--line);padding-top:13px}
+.cbtn{text-decoration:none;font-weight:700;font-size:13px;padding:9px 13px;border-radius:10px;
+  border:1px solid var(--line);background:#faf7f1;color:var(--ink);transition:.15s}
+.cbtn:hover{border-color:var(--accent2)}
+.cbtn.tel{background:var(--ok);color:#fff;border-color:var(--ok)}
+.cbtn.mail{background:#3a6ea5;color:#fff;border-color:#3a6ea5}
+.cbtn.link{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cbtn.search{background:#fff}
+.note{max-width:1180px;margin:0 auto 60px;padding:0 20px;color:var(--muted);font-size:13px;text-align:center}
+.lb{position:fixed;inset:0;background:rgba(15,12,8,.93);display:none;z-index:99;
+  align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb img{max-width:94vw;max-height:90vh;object-fit:contain;border-radius:6px}
+.lb .x{position:absolute;top:18px;right:24px;color:#fff;font-size:40px;cursor:pointer;line-height:1}
+.lb .lbnav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:52px;
+  cursor:pointer;padding:0 24px;user-select:none}
+.lb .lbprev{left:0} .lb .lbnext{right:0}
+@media(max-width:760px){.grid{grid-template-columns:1fr;gap:20px}.pm{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>Appartements pour Léa</h1>
+  <p class="sub">Sélection T2 à Paris Rive Gauche, triée du moins cher au plus cher. Toutes les infos et toutes les photos réunies ici, sans dépendre d’aucune plateforme.</p>
+  <div class="criteria">
+    <span>🎯 <b>T2</b> · 2 pièces</span>
+    <span>💶 ≤ <b>1200 €</b> charges comprises</span>
+    <span>📍 <b>13e · 14e · 15e</b> (Rive Gauche)</span>
+    <span>🏠 <b>14</b> offres</span>
+    <span>🙋 <b>10</b> particuliers (0 € frais)</span>
+    <span>🛗 <b>2</b> avec ascenseur</span>
+  </div>
+</header>
+
+<main class="grid">
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-13e-930-12f530c0-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-13e-930-12f530c0-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-13e-930-12f530c0-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-13e-930-12f530c0-03.jpg" loading="lazy" data-i="3" alt="photo 4"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">4 photos</span>
+        <span class="cdc">⭐ Coup de cœur</span>
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">930<span> €<small> CC</small></span></div>
+          <div class="rating" title="3.1/5">
+            <div class="stars">★★★☆☆</div>
+            <div class="rnum">3.1<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">locservice.fr</span> · Réf. 364653</div>
+        <div class="chips"><span class="chip big">31 m²</span><span class="chip">2 pièces</span><span class="chip">Non meublé</span><span class="chip no">🛗 Sans ascenseur</span><span class="chip dpe" style="background:#f2af1a">DPE E</span><span class="chip arr">75013 · Paris 13e</span><span class="chip">Gare</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Loyer doux (930 € CC)</li><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Sans ascenseur</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>À louer sur Paris 13 appartement T2 non meublé. Ce logement d&#x27;une superficie de 31 m² est disponible le 17/08/2026 entre particuliers pour un loyer de 930 €</p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=locservice.fr+364653">🔍 Retrouver l’annonce (locservice.fr)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-13e-990-50cd924f-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-13e-990-50cd924f-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-13e-990-50cd924f-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-13e-990-50cd924f-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-13e-990-50cd924f-04.jpg" loading="lazy" data-i="4" alt="photo 5"><img src="img/paris-13e-990-50cd924f-05.jpg" loading="lazy" data-i="5" alt="photo 6"><img src="img/paris-13e-990-50cd924f-06.jpg" loading="lazy" data-i="6" alt="photo 7"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">7 photos</span>
+        <span class="cdc">⭐ Coup de cœur</span>
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">990<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.3/5">
+            <div class="stars">★★☆☆☆</div>
+            <div class="rnum">2.3<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">gensdeconfiance.com</span> · Réf. 2846751</div>
+        <div class="chips"><span class="chip big">25 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Meublé</span><span class="chip arr">75013 · Paris 13e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Loyer doux (990 € CC)</li><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Petite surface (25 m²)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Chers Gens de Confiance, je propose à la location ce meublé de 25m² composé de 2 pièces : 1 pi … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=gensdeconfiance.com+2846751">🔍 Retrouver l’annonce (gensdeconfiance.com)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-13e-1004-4147caf5-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-13e-1004-4147caf5-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-13e-1004-4147caf5-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-13e-1004-4147caf5-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-13e-1004-4147caf5-04.jpg" loading="lazy" data-i="4" alt="photo 5"><img src="img/paris-13e-1004-4147caf5-05.jpg" loading="lazy" data-i="5" alt="photo 6"><img src="img/paris-13e-1004-4147caf5-06.jpg" loading="lazy" data-i="6" alt="photo 7"><img src="img/paris-13e-1004-4147caf5-07.jpg" loading="lazy" data-i="7" alt="photo 8"><img src="img/paris-13e-1004-4147caf5-08.jpg" loading="lazy" data-i="8" alt="photo 9"><img src="img/paris-13e-1004-4147caf5-09.jpg" loading="lazy" data-i="9" alt="photo 10"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">10 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1004<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.4/5">
+            <div class="stars">★★☆☆☆</div>
+            <div class="rnum">2.4<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">gensdeconfiance.com</span> · Réf. 1718278</div>
+        <div class="chips"><span class="chip big">30 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Meublé</span><span class="chip">4e étage</span><span class="chip dpe" style="background:#ec6e26">DPE F</span><span class="chip arr">75013 · Paris 13e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>DPE faible (F) → chauffage cher</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Chers Gens de Confiance,
+
+Je loue un appartement T1bis meublé à proximité immédiate du métro Olympiades sur la ligne 14 (4 minutes à pied) et proche du m … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=gensdeconfiance.com+1718278">🔍 Retrouver l’annonce (gensdeconfiance.com)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-14e-1060-61f4f29d-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-14e-1060-61f4f29d-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-14e-1060-61f4f29d-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-14e-1060-61f4f29d-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-14e-1060-61f4f29d-04.jpg" loading="lazy" data-i="4" alt="photo 5"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">5 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1060<span> €<small> CC*</small></span></div>
+          <div class="rating" title="1.2/5">
+            <div class="stars">★☆☆☆☆</div>
+            <div class="rnum">1.2<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner agc">Agence</span> <span class="src">IMMOJEUNE</span> · Réf. P14ALYISIA29DGH-90M</div>
+        <div class="chips"><span class="chip big">26 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Non meublé</span><span class="chip">7e étage</span><span class="chip no">🛗 Sans ascenseur</span><span class="chip dpe" style="background:#f2af1a">DPE E</span><span class="chip arr">75014 · Paris 14e</span><span class="chip">Petit Montrouge</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>—</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Petite surface (26 m²)</li><li>Sans ascenseur (7e étage)</li><li>Frais d’agence : 390 €</li><li>Charges estimées → à confirmer</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Avec IMMOJEUNE, trouvez les meilleurs logements étudiants et jeunes actifs en quelques clics et en toute confiance.
+
+L&#x27;Agence Nous Gérons vous propose un joli deux pièces situé dans une copropriété calme et sécurisée au ceur du 14ème arrondissement, au 7ème étage sans ascenseur.
+
+Le logement se compose d&#x27;un séjour avec un coin cuisine entièrement équipé, d&#x27;une chambre, indépendante, et d&#x27;une salle de douche  avec WC inclus. L&#x27;appartement est loué meublé et équipé (machine à laver, hotte, four, sèche serviette, réfrigérateur, plaques vitrocéramiques, vaisselle...).
+
+A noter :
+La station Alésia (ligne 4) se situe à 4min à pieds, et plusieurs lignes de bus (62, 58, 92, 38 ) sont à proximité.
+Idéal pour un couple, un(e) étudiant(e) ou un(e) jeune actif/ve
+
+Conditions de location :
+- Loyer mensuel (hors charges) : 956,81 €
+- Provisions sur charges : 104 €
+- Loyer charges comprises : 1060,81 €
+- Dépôt de garantie : 1060,81  €
+
+Honoraires à la charge du locataire
+– Constitution du dossier et rédaction du bail : 12,10 € TTC/m² × 25,79 m² = 312,06 € TTC
+– État des lieux : 3,03 € TTC/m² × 25,79 m² = 78,14 € TTC
+Total honoraires TTC : 390,20 €
+
+Informations complémentaires –
+- Disponibilité : 22/06/2026
+- Chauffage : Individuel électrique (à la charge du locataire)
+- Eau chaude : Individuelle électrique (à la charge du locataire)
+
+Encadrement des loyers – Zone soumise à réglementation –
+- Loyer de référence : 30.9 €/m²
+- Loyer de référence majoré : 37.1 €/m²
+- Loyer de base initial : 37.1 €/m² × 25.79 m² = 956,81 €
+
+Barème des honoraires de location :
+- Zone très tendue : 12,10 €/m² TTC
+- Zone tendue : 10,09 €/m² TTC
+- Zone non tendue : 8,07 €/m² TTC
+- État des lieux : 3,03 €/m² TTC
+
+– Mentions légales –
+
+SARL MRZ
+Carte professionnelle n° : CPI75012015000000390
+Délivrée par : CCI de Paris Île-de-France
+Organisme garant : SOCAF 26 avenue de Suffren, 75015 PARIS
+
+Mis à jour le 23/06/2026
+Updated on 23/06/2026</p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=IMMOJEUNE+P14ALYISIA29DGH-90M">🔍 Retrouver l’annonce (IMMOJEUNE)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-15e-1060-ca94a0be-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-15e-1060-ca94a0be-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-15e-1060-ca94a0be-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-15e-1060-ca94a0be-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-15e-1060-ca94a0be-04.jpg" loading="lazy" data-i="4" alt="photo 5"><img src="img/paris-15e-1060-ca94a0be-05.jpg" loading="lazy" data-i="5" alt="photo 6"><img src="img/paris-15e-1060-ca94a0be-06.jpg" loading="lazy" data-i="6" alt="photo 7"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">7 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1060<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.3/5">
+            <div class="stars">★★☆☆☆</div>
+            <div class="rnum">2.3<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">gensdeconfiance.com</span> · Réf. 1790390</div>
+        <div class="chips"><span class="chip big">30 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Meublé</span><span class="chip">RdC</span><span class="chip dpe" style="background:#f2af1a">DPE E</span><span class="chip arr">75015 · Paris 15e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Rez-de-chaussée (luminosité/bruit)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Chers Gens de Confiance,
+Je mets en location cet appartement situé à Paris 15 (Boucicaut) dont voici le descriptif : 
+Très beau 2 pièces (30m² environ) … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=gensdeconfiance.com+1790390">🔍 Retrouver l’annonce (gensdeconfiance.com)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-13e-1090-57f704e9-00.webp" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-13e-1090-57f704e9-01.webp" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-13e-1090-57f704e9-02.webp" loading="lazy" data-i="2" alt="photo 3"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">3 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1090<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.5/5">
+            <div class="stars">★★½☆☆</div>
+            <div class="rnum">2.5<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">123loger.com</span> · Réf. 6a2aeabe082e</div>
+        <div class="chips"><span class="chip big">31 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Meublé</span><span class="chip">1e étage</span><span class="chip no">🛗 Sans ascenseur</span><span class="chip dpe" style="background:#f7e600">DPE D</span><span class="chip arr">75013 · Paris 13e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>DPE correct (D)</li><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Sans ascenseur</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Appartement meublé bien entretenu de 31m2, deux pièces sur cour, situé au 2ème étage sans ascenseur. Digicode.
+L’appartement se compose d’une entrée, d’un séjour, d’une chambre, d’un coin cuisine aménagée et équipée (lave-linge, plaques de cuisson, frigo, micro-onde four) et … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=123loger.com+6a2aeabe082e">🔍 Retrouver l’annonce (123loger.com)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-14e-1100-d1f4f98f-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-14e-1100-d1f4f98f-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-14e-1100-d1f4f98f-02.jpg" loading="lazy" data-i="2" alt="photo 3"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">3 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1100<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.1/5">
+            <div class="stars">★★☆☆☆</div>
+            <div class="rnum">2.1<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">locservice.fr</span> · Réf. 403278</div>
+        <div class="chips"><span class="chip big">30 m²</span><span class="chip">2 pièces</span><span class="chip">Non meublé</span><span class="chip no">🛗 Sans ascenseur</span><span class="chip dpe" style="background:#f2af1a">DPE E</span><span class="chip arr">75014 · Paris 14e</span><span class="chip">Petit Montrouge</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Sans ascenseur</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Location appartement T2 à Paris 14 de 30 m². Cet appartement de particulier est à louer non meublé pour un loyer de 1100 € disponible immédiatement</p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=locservice.fr+403278">🔍 Retrouver l’annonce (locservice.fr)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-14e-1162-3b603701-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-14e-1162-3b603701-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-14e-1162-3b603701-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-14e-1162-3b603701-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-14e-1162-3b603701-04.jpg" loading="lazy" data-i="4" alt="photo 5"><img src="img/paris-14e-1162-3b603701-05.jpg" loading="lazy" data-i="5" alt="photo 6"><img src="img/paris-14e-1162-3b603701-06.jpg" loading="lazy" data-i="6" alt="photo 7"><img src="img/paris-14e-1162-3b603701-07.jpg" loading="lazy" data-i="7" alt="photo 8"><img src="img/paris-14e-1162-3b603701-08.jpg" loading="lazy" data-i="8" alt="photo 9"><img src="img/paris-14e-1162-3b603701-09.jpg" loading="lazy" data-i="9" alt="photo 10"><img src="img/paris-14e-1162-3b603701-10.jpg" loading="lazy" data-i="10" alt="photo 11"><img src="img/paris-14e-1162-3b603701-11.jpg" loading="lazy" data-i="11" alt="photo 12"><img src="img/paris-14e-1162-3b603701-12.jpg" loading="lazy" data-i="12" alt="photo 13"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">13 photos</span>
+        <span class="cdc">⭐ Coup de cœur</span>
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1162<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.1/5">
+            <div class="stars">★★☆☆☆</div>
+            <div class="rnum">2.1<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner agc">Agence</span> <span class="src">alain-rousseau</span> · Réf. GES00080009-751</div>
+        <div class="chips"><span class="chip big">33 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Non meublé</span><span class="chip">2e étage</span><span class="chip ok">🛗 Ascenseur</span><span class="chip dpe" style="background:#f7e600">DPE D</span><span class="chip arr">75014 · Paris 14e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Ascenseur 🛗</li><li>DPE correct (D)</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Agence (frais possibles)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>EXCLUSIVITE – A LOUER Dans un bel immeuble ancien, nous vous proposons à la
+location un appartement 2 pièces traversant vide de 33,31 m² au 2ème étage sans
+ascenseur donnant d&#x27;un côté sur rue et de l&#x27;autre sur une cour intérieure
+arborée. … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=alain-rousseau+GES00080009-751">🔍 Retrouver l’annonce (alain-rousseau)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-15e-1166-8f9de6e4-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-15e-1166-8f9de6e4-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-15e-1166-8f9de6e4-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-15e-1166-8f9de6e4-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-15e-1166-8f9de6e4-04.jpg" loading="lazy" data-i="4" alt="photo 5"><img src="img/paris-15e-1166-8f9de6e4-05.jpg" loading="lazy" data-i="5" alt="photo 6"><img src="img/paris-15e-1166-8f9de6e4-06.jpg" loading="lazy" data-i="6" alt="photo 7"><img src="img/paris-15e-1166-8f9de6e4-07.jpg" loading="lazy" data-i="7" alt="photo 8"><img src="img/paris-15e-1166-8f9de6e4-08.jpg" loading="lazy" data-i="8" alt="photo 9"><img src="img/paris-15e-1166-8f9de6e4-09.jpg" loading="lazy" data-i="9" alt="photo 10"><img src="img/paris-15e-1166-8f9de6e4-10.jpg" loading="lazy" data-i="10" alt="photo 11"><img src="img/paris-15e-1166-8f9de6e4-11.jpg" loading="lazy" data-i="11" alt="photo 12"><img src="img/paris-15e-1166-8f9de6e4-12.jpg" loading="lazy" data-i="12" alt="photo 13"><img src="img/paris-15e-1166-8f9de6e4-13.jpg" loading="lazy" data-i="13" alt="photo 14"><img src="img/paris-15e-1166-8f9de6e4-14.jpg" loading="lazy" data-i="14" alt="photo 15"><img src="img/paris-15e-1166-8f9de6e4-15.jpg" loading="lazy" data-i="15" alt="photo 16"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">16 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1166<span> €<small> CC</small></span></div>
+          <div class="rating" title="1.0/5">
+            <div class="stars">★☆☆☆☆</div>
+            <div class="rnum">1.0<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner agc">Agence</span> <span class="src">parisattitude</span> · Réf. 14411</div>
+        <div class="chips"><span class="chip big">31 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Meublé</span><span class="chip">4e étage</span><span class="chip arr">75015 · Paris 15e</span><span class="chip">Saint Lambert</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>—</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Agence (frais possibles)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Cet appartement de 31 m² , 2 pièces , est situé  rue Olivier de Serres dans le 15ème arrondissement , au 4ème étage d&#x27;un immeuble du 19ème siècle  et il peut accueillir 4 personnes. Cet appartement est équipé avec : Machine à laver avec sèche-linge intégré, la télévision, un accès internet haut débit illimité avec le wifi.
+
+L&#x27;immeuble du 19ème siècle  est équipé avec : un code d entrée.
+Cet appartement est proposé à la location uniquement en bail CODE CIVIL (résidence secondaire ou en bail société)
+Référence Paris Attitude: 14411</p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=parisattitude+14411">🔍 Retrouver l’annonce (parisattitude)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-14e-1184-9201ebd0-00.jpeg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-14e-1184-9201ebd0-01.jpeg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-14e-1184-9201ebd0-02.jpeg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-14e-1184-9201ebd0-03.jpeg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-14e-1184-9201ebd0-04.jpeg" loading="lazy" data-i="4" alt="photo 5"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">5 photos</span>
+        <span class="cdc">⭐ Coup de cœur</span>
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1184<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.4/5">
+            <div class="stars">★★☆☆☆</div>
+            <div class="rnum">2.4<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">gensdeconfiance.com</span> · Réf. 4010761</div>
+        <div class="chips"><span class="chip big">40 m²</span><span class="chip">2 pièces</span><span class="chip">Non meublé</span><span class="chip dpe" style="background:#f2af1a">DPE E</span><span class="chip arr">75014 · Paris 14e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Grande surface (40 m²)</li><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Haut du budget (1184 € CC)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Chers Gens de Confiance, je loue un 2 pièces, cuisine, salle de douche, … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=gensdeconfiance.com+4010761">🔍 Retrouver l’annonce (gensdeconfiance.com)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-14e-1189-b9cdb0b3-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-14e-1189-b9cdb0b3-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-14e-1189-b9cdb0b3-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-14e-1189-b9cdb0b3-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-14e-1189-b9cdb0b3-04.jpg" loading="lazy" data-i="4" alt="photo 5"><img src="img/paris-14e-1189-b9cdb0b3-05.jpg" loading="lazy" data-i="5" alt="photo 6"><img src="img/paris-14e-1189-b9cdb0b3-06.jpg" loading="lazy" data-i="6" alt="photo 7"><img src="img/paris-14e-1189-b9cdb0b3-07.jpg" loading="lazy" data-i="7" alt="photo 8"><img src="img/paris-14e-1189-b9cdb0b3-08.jpg" loading="lazy" data-i="8" alt="photo 9"><img src="img/paris-14e-1189-b9cdb0b3-09.jpg" loading="lazy" data-i="9" alt="photo 10"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">10 photos</span>
+        <span class="cdc">⭐ Coup de cœur</span>
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1189<span> €<small> CC</small></span></div>
+          <div class="rating" title="1.6/5">
+            <div class="stars">★½☆☆☆</div>
+            <div class="rnum">1.6<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner agc">Agence</span> <span class="src">SERGIC PARIS 15ÈME</span> · Réf. 30_0270_02_0047</div>
+        <div class="chips"><span class="chip big">40 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Non meublé</span><span class="chip">6e étage</span><span class="chip no">🛗 Sans ascenseur</span><span class="chip dpe" style="background:#f2af1a">DPE E</span><span class="chip arr">75014 · Paris 14e</span><span class="chip">Petit Montrouge</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Grande surface (40 m²)</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Haut du budget (1189 € CC)</li><li>Sans ascenseur (6e étage)</li><li>Frais d’agence : 600.66 €</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Paris 14ème, à proximité du métro Alésia, dans un bel immeuble ancien avec digicode et gardien, nous vous proposons un beau 2 pièces en parfait état avec parquet ancien, au 6ème étage sans ascenseur, offrant une cuisine aménagée et équipée d&#x27;une plaque de cuisson, un séjour lumineux et spacieux, une chambre et une salle de douche avec toilette et branchement pour une machine à laver. Les fenêtres sont en PVC doubles vitrages, le chauffage et l&#x27;eau chaude sont individuels électriques. Une cave complète cette location. Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisque : https://www.georisques.gouv.fr</p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=SERGIC+PARIS+15ÈME+30_0270_02_0047">🔍 Retrouver l’annonce (SERGIC PARIS 15ÈME)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-15e-1200-7995de2a-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-15e-1200-7995de2a-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-15e-1200-7995de2a-02.jpg" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-15e-1200-7995de2a-03.jpg" loading="lazy" data-i="3" alt="photo 4"><img src="img/paris-15e-1200-7995de2a-04.jpg" loading="lazy" data-i="4" alt="photo 5"><img src="img/paris-15e-1200-7995de2a-05.jpg" loading="lazy" data-i="5" alt="photo 6"><img src="img/paris-15e-1200-7995de2a-06.jpg" loading="lazy" data-i="6" alt="photo 7"><img src="img/paris-15e-1200-7995de2a-07.jpg" loading="lazy" data-i="7" alt="photo 8"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">8 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1200<span> €<small> CC</small></span></div>
+          <div class="rating" title="1.5/5">
+            <div class="stars">★½☆☆☆</div>
+            <div class="rnum">1.5<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">gensdeconfiance.com</span> · Réf. 4008675</div>
+        <div class="chips"><span class="chip big">30 m²</span><span class="chip">2 pièces</span><span class="chip">Meublé</span><span class="chip">5e étage</span><span class="chip no">🛗 Sans ascenseur</span><span class="chip arr">75015 · Paris 15e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Haut du budget (1200 € CC)</li><li>Sans ascenseur (5e étage)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Chers Gens de Confiance,
+Je loue mon appartement meublé, situé rue Leriche à Paris dans le 15e arrondissement, à 4 minutes à pied de Convention (ligne 12). … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=gensdeconfiance.com+4008675">🔍 Retrouver l’annonce (gensdeconfiance.com)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-15e-1200-e2c6fe2e-00.jpg" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-15e-1200-e2c6fe2e-01.jpg" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-15e-1200-e2c6fe2e-02.jpg" loading="lazy" data-i="2" alt="photo 3"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">3 photos</span>
+        
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1200<span> €<small> CC</small></span></div>
+          <div class="rating" title="2.1/5">
+            <div class="stars">★★☆☆☆</div>
+            <div class="rnum">2.1<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">gensdeconfiance.com</span> · Réf. 309554</div>
+        <div class="chips"><span class="chip big">34 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Meublé</span><span class="chip dpe" style="background:#f7e600">DPE D</span><span class="chip arr">75015 · Paris 15e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>DPE correct (D)</li><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Haut du budget (1200 € CC)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Chers GDC,
+
+Notre 2 pièces est idéal en co location pour 2 étudiants.
+Il sera disponible à partir du 01/07/26
+
+Appartement Meublé de … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=gensdeconfiance.com+309554">🔍 Retrouver l’annonce (gensdeconfiance.com)</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="gallery">
+        <div class="track"><img src="img/paris-14e-1200-2236b77c-00.webp" loading="lazy" data-i="0" alt="photo 1"><img src="img/paris-14e-1200-2236b77c-01.webp" loading="lazy" data-i="1" alt="photo 2"><img src="img/paris-14e-1200-2236b77c-02.webp" loading="lazy" data-i="2" alt="photo 3"><img src="img/paris-14e-1200-2236b77c-03.webp" loading="lazy" data-i="3" alt="photo 4"></div>
+        <button class="nav prev" aria-label="précédent">‹</button>
+        <button class="nav next" aria-label="suivant">›</button>
+        <span class="count">4 photos</span>
+        <span class="cdc">⭐ Coup de cœur</span>
+      </div>
+      <div class="body">
+        <div class="topline">
+          <div class="price">1200<span> €<small> CC</small></span></div>
+          <div class="rating" title="3.3/5">
+            <div class="stars">★★★☆☆</div>
+            <div class="rnum">3.3<small>/5</small></div>
+          </div>
+        </div>
+        <div class="ownerline"><span class="owner part">Particulier</span> <span class="src">123loger.com</span> · Réf. b18d09fd</div>
+        <div class="chips"><span class="chip big">40 m²</span><span class="chip">2 pièces</span><span class="chip">1 ch.</span><span class="chip">Non meublé</span><span class="chip">4e étage</span><span class="chip ok">🛗 Ascenseur</span><span class="chip dpe" style="background:#f7e600">DPE D</span><span class="chip arr">75014 · Paris 14e</span></div>
+        <div class="pm">
+          <div class="plus"><h4>✅ Les plus</h4><ul><li>Grande surface (40 m²)</li><li>Ascenseur 🛗</li><li>DPE correct (D)</li><li>Particulier → 0 € de frais d’agence</li></ul></div>
+          <div class="minus"><h4>❌ Les moins</h4><ul><li>Haut du budget (1200 € CC)</li></ul></div>
+        </div>
+        <details class="desc"><summary>Description</summary><p>Appartement2 pièces situé ç 4ème étage (avec ascenseur) à Paris 14ème, proche des commerces et des métro (500 m du métro Pernety et 700m d&#x27;Alésia).
+L&#x27;appartement se … <span class="trunc">(description tronquée par la source)</span></p></details>
+        <div class="contact"><a class="cbtn search" target="_blank" rel="noopener" href="https://www.google.com/search?q=123loger.com+b18d09fd">🔍 Retrouver l’annonce (123loger.com)</a></div>
+      </div>
+    </article>
+</main>
+
+<p class="note">⭐ La note /5 est calculée chez nous (loyer, surface, ascenseur, DPE, particulier = bonus 0 € de frais). « CC* » = charges comprises estimées, à confirmer auprès du propriétaire. 98 photos au total. Les coordonnées directes ne sont pas toujours publiées par la source : utiliser le lien 🔍 pour retrouver l’annonce d’origine.</p>
+
+<div class="lb" id="lb">
+  <span class="x" id="lbx">×</span>
+  <span class="lbnav lbprev" id="lbprev">‹</span>
+  <img id="lbimg" src="" alt="">
+  <span class="lbnav lbnext" id="lbnext">›</span>
+</div>
+
+<script>
+document.querySelectorAll('.gallery').forEach(g=>{
+  const track=g.querySelector('.track');
+  g.querySelector('.prev').onclick=()=>track.scrollBy({left:-track.clientWidth,behavior:'smooth'});
+  g.querySelector('.next').onclick=()=>track.scrollBy({left:track.clientWidth,behavior:'smooth'});
+});
+// lightbox
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
+let curList=[],curIdx=0;
+function openLb(list,idx){curList=list;curIdx=idx;lbimg.src=curList[curIdx];lb.classList.add('open');}
+function move(n){curIdx=(curIdx+n+curList.length)%curList.length;lbimg.src=curList[curIdx];}
+document.querySelectorAll('.track').forEach(track=>{
+  const srcs=[...track.querySelectorAll('img')].map(i=>i.src);
+  track.querySelectorAll('img').forEach((img,i)=>img.onclick=()=>openLb(srcs,i));
+});
+document.getElementById('lbx').onclick=()=>lb.classList.remove('open');
+document.getElementById('lbnext').onclick=e=>{e.stopPropagation();move(1);};
+document.getElementById('lbprev').onclick=e=>{e.stopPropagation();move(-1);};
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open');};
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1);});
+</script>
+</body>
+</html>
